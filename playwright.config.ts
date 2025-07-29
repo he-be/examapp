@@ -11,6 +11,7 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
+  timeout: process.env.CI ? 60000 : 30000, // CI環境では1分、ローカルでは30秒
 
   use: {
     baseURL: 'http://localhost:8787',
@@ -34,5 +35,8 @@ export default defineConfig({
     command: 'npm run dev',
     url: 'http://localhost:8787',
     reuseExistingServer: !process.env.CI,
+    timeout: process.env.CI ? 120000 : 60000, // CI環境では2分、ローカルでは1分
+    stdout: 'pipe',
+    stderr: 'pipe',
   },
 });
