@@ -2,9 +2,9 @@
 // 基本型定義
 // =============================================================================
 
-export type TestMode = 'practice' | 'test'
-export type TestType = 'mmlu' | 'gsm8k' | 'hellaswag' | 'bigbench' | 'drop'
-export type QuestionType = 'multiple-choice' | 'numeric' | 'text'
+export type TestMode = 'practice' | 'test';
+export type TestType = 'mmlu' | 'gsm8k' | 'hellaswag' | 'bigbench' | 'drop';
+export type QuestionType = 'multiple-choice' | 'numeric' | 'text';
 
 // =============================================================================
 // 問題データ構造
@@ -15,12 +15,12 @@ export type QuestionType = 'multiple-choice' | 'numeric' | 'text'
  * すべてのベンチマーク問題の基底となる型
  */
 export interface BaseQuestion {
-  id: string
-  type: QuestionType
-  question: string
-  correctAnswer: string | number
-  explanation: string
-  metadata?: Record<string, any>
+  id: string;
+  type: QuestionType;
+  question: string;
+  correctAnswer: string | number;
+  explanation: string;
+  metadata?: Record<string, any>;
 }
 
 /**
@@ -28,11 +28,11 @@ export interface BaseQuestion {
  * 多肢選択式の問題データ
  */
 export interface MMLUQuestion extends BaseQuestion {
-  type: 'multiple-choice'
-  category: string
-  choices: string[]
-  correctAnswer: number // 選択肢のインデックス
-  difficulty: 'easy' | 'medium' | 'hard'
+  type: 'multiple-choice';
+  category: string;
+  choices: string[];
+  correctAnswer: number; // 選択肢のインデックス
+  difficulty: 'easy' | 'medium' | 'hard';
 }
 
 /**
@@ -40,10 +40,10 @@ export interface MMLUQuestion extends BaseQuestion {
  * 数値入力問題データ
  */
 export interface GSM8KQuestion extends BaseQuestion {
-  type: 'numeric'
-  correctAnswer: number
-  chainOfThought: string[]
-  unit?: string
+  type: 'numeric';
+  correctAnswer: number;
+  chainOfThought: string[];
+  unit?: string;
 }
 
 /**
@@ -51,10 +51,10 @@ export interface GSM8KQuestion extends BaseQuestion {
  * 文脈に続く最も自然な結末を選択
  */
 export interface HellaSwagQuestion extends BaseQuestion {
-  type: 'multiple-choice'
-  context: string
-  choices: string[]
-  correctAnswer: number
+  type: 'multiple-choice';
+  context: string;
+  choices: string[];
+  correctAnswer: number;
 }
 
 /**
@@ -62,9 +62,9 @@ export interface HellaSwagQuestion extends BaseQuestion {
  * 多様なタスク形式に対応
  */
 export interface BigBenchQuestion extends BaseQuestion {
-  taskType: string
-  difficulty: 'hard'
-  reasoningType: 'logical' | 'mathematical' | 'commonsense' | 'linguistic'
+  taskType: string;
+  difficulty: 'hard';
+  reasoningType: 'logical' | 'mathematical' | 'commonsense' | 'linguistic';
 }
 
 /**
@@ -72,14 +72,19 @@ export interface BigBenchQuestion extends BaseQuestion {
  * 長文読解に基づく質問応答
  */
 export interface DROPQuestion extends BaseQuestion {
-  passage: string
-  questionType: 'numeric' | 'span' | 'date'
+  passage: string;
+  questionType: 'numeric' | 'span' | 'date';
 }
 
 /**
  * 問題データの統合型
  */
-export type Question = MMLUQuestion | GSM8KQuestion | HellaSwagQuestion | BigBenchQuestion | DROPQuestion
+export type Question =
+  | MMLUQuestion
+  | GSM8KQuestion
+  | HellaSwagQuestion
+  | BigBenchQuestion
+  | DROPQuestion;
 
 // =============================================================================
 // ユーザー状態管理
@@ -89,68 +94,68 @@ export type Question = MMLUQuestion | GSM8KQuestion | HellaSwagQuestion | BigBen
  * ユーザーの回答データ
  */
 export interface UserAnswer {
-  questionId: string
-  userAnswer: string | number
-  isCorrect: boolean
-  timeSpent: number // 秒
-  timestamp: number
+  questionId: string;
+  userAnswer: string | number;
+  isCorrect: boolean;
+  timeSpent: number; // 秒
+  timestamp: number;
 }
 
 /**
  * テストの進行状況
  */
 export interface UserProgress {
-  testId: string
-  testType: TestType
-  mode: TestMode
-  startTime: number
-  currentQuestionIndex: number
-  answers: Record<string, UserAnswer>
-  timeRemaining?: number // テストモード用
-  isCompleted: boolean
+  testId: string;
+  testType: TestType;
+  mode: TestMode;
+  startTime: number;
+  currentQuestionIndex: number;
+  answers: Record<string, UserAnswer>;
+  timeRemaining?: number; // テストモード用
+  isCompleted: boolean;
 }
 
 /**
  * テスト結果
  */
 export interface TestResults {
-  testId: string
-  testType: TestType
-  mode: TestMode
-  startTime: number
-  endTime: number
-  totalQuestions: number
-  correctAnswers: number
-  incorrectAnswers: number
-  accuracy: number // パーセンテージ
-  totalTimeSpent: number // 秒
-  averageTimePerQuestion: number // 秒
-  answers: UserAnswer[]
+  testId: string;
+  testType: TestType;
+  mode: TestMode;
+  startTime: number;
+  endTime: number;
+  totalQuestions: number;
+  correctAnswers: number;
+  incorrectAnswers: number;
+  accuracy: number; // パーセンテージ
+  totalTimeSpent: number; // 秒
+  averageTimePerQuestion: number; // 秒
+  answers: UserAnswer[];
   metadata?: {
-    categoryBreakdown?: Record<string, { correct: number; total: number }>
-    difficultyBreakdown?: Record<string, { correct: number; total: number }>
-  }
+    categoryBreakdown?: Record<string, { correct: number; total: number }>;
+    difficultyBreakdown?: Record<string, { correct: number; total: number }>;
+  };
 }
 
 /**
  * ユーザー設定
  */
 export interface UserPreferences {
-  language: 'ja' | 'en'
-  theme: 'light' | 'dark'
-  fontSize: 'small' | 'medium' | 'large'
-  highContrast: boolean
-  autoSave: boolean
+  language: 'ja' | 'en';
+  theme: 'light' | 'dark';
+  fontSize: 'small' | 'medium' | 'large';
+  highContrast: boolean;
+  autoSave: boolean;
 }
 
 /**
  * localStorage に保存されるデータ構造
  */
 export interface StoredData {
-  llmTestProgress?: UserProgress
-  llmTestHistory: TestResults[]
-  userPreferences: UserPreferences
-  version: string // データスキーマのバージョン
+  llmTestProgress?: UserProgress;
+  llmTestHistory: TestResults[];
+  userPreferences: UserPreferences;
+  version: string; // データスキーマのバージョン
 }
 
 // =============================================================================
@@ -161,40 +166,40 @@ export interface StoredData {
  * フィードバック送信用データ
  */
 export interface FeedbackRequest {
-  testId: string
-  questionId?: string
-  feedbackText: string
-  userScore?: number
-  metadata?: Record<string, any>
+  testId: string;
+  questionId?: string;
+  feedbackText: string;
+  userScore?: number;
+  metadata?: Record<string, any>;
 }
 
 /**
  * API成功レスポンス
  */
 export interface APISuccessResponse {
-  success: true
-  message: string
-  data?: any
+  success: true;
+  message: string;
+  data?: any;
 }
 
 /**
  * APIエラーレスポンス
  */
 export interface APIErrorResponse {
-  success: false
-  error: string
-  code?: string
+  success: false;
+  error: string;
+  code?: string;
 }
 
-export type APIResponse = APISuccessResponse | APIErrorResponse
+export type APIResponse = APISuccessResponse | APIErrorResponse;
 
 /**
  * ヘルスチェックレスポンス
  */
 export interface HealthCheckResponse {
-  status: 'ok' | 'error'
-  timestamp: number
-  version?: string
+  status: 'ok' | 'error';
+  timestamp: number;
+  version?: string;
 }
 
 // =============================================================================
@@ -205,38 +210,38 @@ export interface HealthCheckResponse {
  * ベンチマーク情報
  */
 export interface BenchmarkInfo {
-  id: TestType
-  name: string
-  fullName: string
-  description: string
-  difficulty: string
-  estimatedTime: string
-  questionCount: string
-  color: string
-  isAvailable: boolean
+  id: TestType;
+  name: string;
+  fullName: string;
+  description: string;
+  difficulty: string;
+  estimatedTime: string;
+  questionCount: string;
+  color: string;
+  isAvailable: boolean;
 }
 
 /**
  * テストインターフェースの状態
  */
 export interface TestInterfaceState {
-  currentQuestion: Question | null
-  currentIndex: number
-  totalQuestions: number
-  timeRemaining?: number
-  isLoading: boolean
-  error?: string
+  currentQuestion: Question | null;
+  currentIndex: number;
+  totalQuestions: number;
+  timeRemaining?: number;
+  isLoading: boolean;
+  error?: string;
 }
 
 /**
  * 問題レンダラーのプロパティ
  */
 export interface QuestionRendererProps {
-  question: Question
-  userAnswer?: string | number
-  onAnswer: (answer: string | number) => void
-  showFeedback: boolean
-  disabled?: boolean
+  question: Question;
+  userAnswer?: string | number;
+  onAnswer: (answer: string | number) => void;
+  showFeedback: boolean;
+  disabled?: boolean;
 }
 
 // =============================================================================
@@ -249,8 +254,8 @@ export class TestError extends Error {
     public code: string,
     public details?: any
   ) {
-    super(message)
-    this.name = 'TestError'
+    super(message);
+    this.name = 'TestError';
   }
 }
 
@@ -260,8 +265,8 @@ export class StorageError extends Error {
     public operation: 'read' | 'write' | 'delete',
     public details?: any
   ) {
-    super(message)
-    this.name = 'StorageError'
+    super(message);
+    this.name = 'StorageError';
   }
 }
 
@@ -271,7 +276,7 @@ export class NetworkError extends Error {
     public status?: number,
     public details?: any
   ) {
-    super(message)
-    this.name = 'NetworkError'
+    super(message);
+    this.name = 'NetworkError';
   }
 }

@@ -12,7 +12,8 @@
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
 img,
@@ -59,11 +60,11 @@ h6 {
   --color-success: #28a745;
   --color-error: #dc3545;
   --color-warning: #ffc107;
-  
+
   --border-radius: 8px;
   --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.15);
-  
+
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
   --spacing-md: 1rem;
@@ -167,7 +168,7 @@ h6 {
   .container {
     padding: 0 var(--spacing-sm);
   }
-  
+
   .main-content {
     padding: var(--spacing-lg) 0;
   }

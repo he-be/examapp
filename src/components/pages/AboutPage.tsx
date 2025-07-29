@@ -3,28 +3,34 @@ export function AboutPage() {
     <div className="container">
       <article style={{ maxWidth: '800px', margin: '0 auto' }}>
         <header style={{ textAlign: 'center', marginBottom: 'var(--spacing-2xl)' }}>
-          <h1 style={{ 
-            fontSize: '2.5rem', 
-            marginBottom: 'var(--spacing-lg)',
-            color: 'var(--color-text)'
-          }}>
+          <h1
+            style={{
+              fontSize: '2.5rem',
+              marginBottom: 'var(--spacing-lg)',
+              color: 'var(--color-text)',
+            }}
+          >
             サイトについて
           </h1>
-          <p style={{ 
-            fontSize: '1.125rem', 
-            color: 'var(--color-text-secondary)',
-            lineHeight: 1.6
-          }}>
+          <p
+            style={{
+              fontSize: '1.125rem',
+              color: 'var(--color-text-secondary)',
+              lineHeight: 1.6,
+            }}
+          >
             LLM評価テスト体験サイトは、AIリテラシー向上を目的とした教育プラットフォームです。
           </p>
         </header>
 
         <section className="card" style={{ marginBottom: 'var(--spacing-xl)' }}>
-          <h2 style={{ 
-            fontSize: '1.75rem', 
-            marginBottom: 'var(--spacing-lg)',
-            color: 'var(--color-primary)'
-          }}>
+          <h2
+            style={{
+              fontSize: '1.75rem',
+              marginBottom: 'var(--spacing-lg)',
+              color: 'var(--color-primary)',
+            }}
+          >
             プロジェクトの目的
           </h2>
           <p style={{ marginBottom: 'var(--spacing-md)', lineHeight: 1.6 }}>
@@ -39,25 +45,28 @@ export function AboutPage() {
         </section>
 
         <section className="card" style={{ marginBottom: 'var(--spacing-xl)' }}>
-          <h2 style={{ 
-            fontSize: '1.75rem', 
-            marginBottom: 'var(--spacing-lg)',
-            color: 'var(--color-primary)'
-          }}>
+          <h2
+            style={{
+              fontSize: '1.75rem',
+              marginBottom: 'var(--spacing-lg)',
+              color: 'var(--color-primary)',
+            }}
+          >
             対象ユーザー
           </h2>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: 'var(--spacing-lg)'
-          }}>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+              gap: 'var(--spacing-lg)',
+            }}
+          >
             <div>
               <h3 style={{ color: 'var(--color-text)', marginBottom: 'var(--spacing-sm)' }}>
                 一般ユーザー
               </h3>
               <p style={{ fontSize: '0.875rem', lineHeight: 1.5 }}>
-                AIやLLMに興味はあるが、専門知識は持たない方。
-                LLMの能力を直感的に理解したい方。
+                AIやLLMに興味はあるが、専門知識は持たない方。 LLMの能力を直感的に理解したい方。
               </p>
             </div>
             <div>
@@ -65,8 +74,7 @@ export function AboutPage() {
                 教育関係者
               </h3>
               <p style={{ fontSize: '0.875rem', lineHeight: 1.5 }}>
-                AIに関する授業や教材として本サイトを活用し、
-                生徒のAIリテラシー向上を目指す方。
+                AIに関する授業や教材として本サイトを活用し、 生徒のAIリテラシー向上を目指す方。
               </p>
             </div>
             <div>
@@ -74,8 +82,7 @@ export function AboutPage() {
                 開発者・研究者
               </h3>
               <p style={{ fontSize: '0.875rem', lineHeight: 1.5 }}>
-                LLM評価の補助ツールとして、
-                ベンチマークの内容を迅速に確認する目的で利用する方。
+                LLM評価の補助ツールとして、 ベンチマークの内容を迅速に確認する目的で利用する方。
               </p>
             </div>
             <div>
@@ -83,49 +90,51 @@ export function AboutPage() {
                 学生
               </h3>
               <p style={{ fontSize: '0.875rem', lineHeight: 1.5 }}>
-                AIやコンピュータサイエンスを学ぶ学生が、
-                実践的な体験学習の一環として利用。
+                AIやコンピュータサイエンスを学ぶ学生が、 実践的な体験学習の一環として利用。
               </p>
             </div>
           </div>
         </section>
 
         <section className="card" style={{ marginBottom: 'var(--spacing-xl)' }}>
-          <h2 style={{ 
-            fontSize: '1.75rem', 
-            marginBottom: 'var(--spacing-lg)',
-            color: 'var(--color-primary)'
-          }}>
+          <h2
+            style={{
+              fontSize: '1.75rem',
+              marginBottom: 'var(--spacing-lg)',
+              color: 'var(--color-primary)',
+            }}
+          >
             技術的特徴
           </h2>
           <ul style={{ lineHeight: 1.6, paddingLeft: 'var(--spacing-lg)' }}>
             <li style={{ marginBottom: 'var(--spacing-sm)' }}>
-              <strong>Workers-First統合アーキテクチャ:</strong> 
-              単一のCloudflare Workerですべての処理を統合し、
-              シンプルで高性能なアーキテクチャを実現
+              <strong>Workers-First統合アーキテクチャ:</strong>
+              単一のCloudflare Workerですべての処理を統合し、 シンプルで高性能なアーキテクチャを実現
             </li>
             <li style={{ marginBottom: 'var(--spacing-sm)' }}>
-              <strong>ステートレス設計:</strong> 
+              <strong>ステートレス設計:</strong>
               ユーザーの状態はクライアントサイドのlocalStorageで管理し、
               プライバシー保護と簡潔性を両立
             </li>
             <li style={{ marginBottom: 'var(--spacing-sm)' }}>
-              <strong>グローバルエッジデリバリー:</strong> 
+              <strong>グローバルエッジデリバリー:</strong>
               Cloudflareのグローバルネットワークによる低遅延配信
             </li>
             <li style={{ marginBottom: 'var(--spacing-sm)' }}>
-              <strong>アクセシビリティ対応:</strong> 
+              <strong>アクセシビリティ対応:</strong>
               WCAG 2.1 AAレベルに準拠したユニバーサルデザイン
             </li>
           </ul>
         </section>
 
         <section className="card" style={{ marginBottom: 'var(--spacing-xl)' }}>
-          <h2 style={{ 
-            fontSize: '1.75rem', 
-            marginBottom: 'var(--spacing-lg)',
-            color: 'var(--color-primary)'
-          }}>
+          <h2
+            style={{
+              fontSize: '1.75rem',
+              marginBottom: 'var(--spacing-lg)',
+              color: 'var(--color-primary)',
+            }}
+          >
             利用可能なベンチマーク
           </h2>
           <div style={{ display: 'grid', gap: 'var(--spacing-md)' }}>
@@ -175,25 +184,25 @@ export function AboutPage() {
         </section>
 
         <section className="card">
-          <h2 style={{ 
-            fontSize: '1.75rem', 
-            marginBottom: 'var(--spacing-lg)',
-            color: 'var(--color-primary)'
-          }}>
+          <h2
+            style={{
+              fontSize: '1.75rem',
+              marginBottom: 'var(--spacing-lg)',
+              color: 'var(--color-primary)',
+            }}
+          >
             プライバシーとデータ管理
           </h2>
           <p style={{ marginBottom: 'var(--spacing-md)', lineHeight: 1.6 }}>
             本サイトではユーザーのプライバシー保護を最優先に考え、
             テストの進捗やスコアなどの個人データは一切サーバーに保存されません。
-            すべての情報はブラウザのlocalStorageに保存され、
-            ユーザーが完全にコントロールできます。
+            すべての情報はブラウザのlocalStorageに保存され、 ユーザーが完全にコントロールできます。
           </p>
           <p style={{ lineHeight: 1.6 }}>
-            この設計により、データ漏洩のリスクが構造的に低減され、
-            安心してご利用いただけます。
+            この設計により、データ漏洩のリスクが構造的に低減され、 安心してご利用いただけます。
           </p>
         </section>
       </article>
     </div>
-  )
+  );
 }

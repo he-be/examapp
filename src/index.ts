@@ -22,19 +22,18 @@ export default {
       try {
         // リクエストボディをJSONとしてパース
         const feedbackData: Record<string, unknown> = await request.json();
-        
+
         // ここで外部サービス（例: SendGrid, Slack API）にフィードバックを送信するロジックを実装
         // await sendFeedbackToExternalService(feedbackData, env);
 
         console.log('Feedback received:', feedbackData);
 
         // 成功レスポンスを返す
-        const responseBody = JSON.stringify({ success: true, message: "Feedback received." });
+        const responseBody = JSON.stringify({ success: true, message: 'Feedback received.' });
         return new Response(responseBody, {
           status: 200,
           headers: { 'Content-Type': 'application/json' },
         });
-
       } catch (error) {
         // JSONのパース失敗など、リクエストに問題があった場合
         if (error instanceof SyntaxError) {
@@ -48,13 +47,16 @@ export default {
 
     // ヘルスチェックエンドポイント
     if (url.pathname === '/api/health' && request.method === 'GET') {
-      return new Response(JSON.stringify({ 
-        status: 'ok', 
-        timestamp: Date.now() 
-      }), {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' },
-      });
+      return new Response(
+        JSON.stringify({
+          status: 'ok',
+          timestamp: Date.now(),
+        }),
+        {
+          status: 200,
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
     }
 
     // このハンドラに到達したということは、リクエストが静的アセットにも

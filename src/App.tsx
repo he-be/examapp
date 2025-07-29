@@ -1,11 +1,11 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Header } from './components/Header'
-import { Footer } from './components/Footer'
-import { HomePage } from './components/pages/HomePage'
-import { AboutPage } from './components/pages/AboutPage'
-import { TestPage } from './components/pages/TestPage'
-import { ResultsPage } from './components/pages/ResultsPage'
-import { ErrorBoundary } from './components/ErrorBoundary'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Header } from './components/Header';
+import { Footer } from './components/Footer';
+import { HomePage } from './components/pages/HomePage';
+import { AboutPage } from './components/pages/AboutPage';
+import { TestPage } from './components/pages/TestPage';
+import { ResultsPage } from './components/pages/ResultsPage';
+import { ErrorBoundary } from './components/ErrorBoundary';
 
 function App() {
   return (
@@ -25,7 +25,7 @@ function App() {
         </div>
       </Router>
     </ErrorBoundary>
-  )
+  );
 }
 
-export default App
+export default App;
