@@ -1,12 +1,14 @@
 import { defineConfig } from 'vite'
 import { defineConfig as defineVitestConfig } from 'vitest/config'
+import react from '@vitejs/plugin-react'
 
 // Merge Vite and Vitest configs
 export default defineConfig(
   defineVitestConfig({
+    plugins: [react()],
     test: {
       globals: true,
-      environment: 'node',
+      environment: 'jsdom',
       include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
       exclude: ['e2e/**', 'node_modules/**', 'dist/**'],
       coverage: {
@@ -26,12 +28,15 @@ export default defineConfig(
     build: {
       target: 'es2022',
       outDir: 'dist',
-      emptyOutDir: true,
+      emptyOutDir: false, // Workerファイルを保護するためfalseに変更
       minify: true,
       rollupOptions: {
-        input: './src/index.ts',
+        input: './src/main.tsx', // Reactエントリーポイントに変更
         output: {
-          format: 'es'
+          format: 'es',
+          entryFileNames: 'assets/[name]-[hash].js',
+          chunkFileNames: 'assets/[name]-[hash].js',
+          assetFileNames: 'assets/[name]-[hash].[ext]'
         }
       }
     },

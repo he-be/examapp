@@ -1,21 +1,31 @@
-name = "examapp"
+# wrangler.toml
+
+# Workerの名称。Cloudflareダッシュボードで表示される。
+name = "llm-test-experience"
+
+# 互換性日付。最新のWorkersランタイム機能を利用するために、最近の日付に設定する。
+# 参考: https://developers.cloudflare.com/workers/platform/compatibility-dates/
+compatibility_date = "2025-04-08"
+
+# APIロジックなど、動的リクエストを処理するWorkerスクリプトのエントリーポイント。
 main = "src/index.ts"
-compatibility_date = "2024-01-01"
 
-# Development settings
+# [site]ブロックはwrangler v3で非推奨となり、[assets]に統合された。
+# wrangler v4以降では、静的アセットの設定は[assets]で行うのが標準。
+# https://developers.cloudflare.com/workers/wrangler/configuration/#static-assets
+[assets]
+# ビルドプロセスによって生成された静的フロントエンドアセット（HTML, JS, CSSなど）が含まれるディレクトリ。
+directory = "./dist"
+
+# シングルページアプリケーション（SPA）のルーティングを有効にする設定。
+# これにより、存在しないパスへのナビゲーションリクエスト（例：/test/mmlu）に対して、
+# 404を返す代わりに指定されたファイル（通常はindex.html）を返す。
+# これはCloudflare Pagesの「マジック」な挙動を明示的に再現するものである [1]。
+spa = "./dist/index.html"
+
+# wrangler devコマンドでローカル開発サーバーを起動する際の設定。
 [dev]
+# ローカルマシンのポート番号
 port = 8787
-local_protocol = "http"
-
-# Production environment
-[env.production]
-name = "examapp"
-
-# Build settings
-[build]
-command = "npm run build"
-
-# Miniflare settings for local development
-[miniflare]
-# Enable KV namespaces, Durable Objects, etc. when needed
-kv_persist = true
+# ローカルネットワーク上の他のデバイスからのアクセスを許可するかどうか
+ip = "0.0.0.0"
