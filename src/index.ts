@@ -8,13 +8,13 @@ export function getRandomItem(): string {
 }
 
 function generateHTML(message: string): string {
-  return \`
+  return `
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>\${message}</title>
+    <title>${message}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -63,12 +63,12 @@ function generateHTML(message: string): string {
 <body>
     <div class="container">
         <h1>AI-Driven Development Sample</h1>
-        <div class="message">\${message}</div>
+        <div class="message">${message}</div>
         <a href="/" class="reload-button">Generate New</a>
     </div>
 </body>
 </html>
-  \`;
+  `;
 }
 
 export default {
