@@ -99,7 +99,7 @@ const dataCache = new DataCache()
  */
 async function fetchWithRetry(
   url: string, 
-  options: RequestInit = {}, 
+  options: Record<string, unknown> = {}, 
   retries: number = MAX_RETRIES
 ): Promise<Response> {
   try {

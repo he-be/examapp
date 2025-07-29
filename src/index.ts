@@ -3,7 +3,8 @@
 // 環境変数などの型定義（必要に応じて）
 export interface Env {
   // 例：フィードバック送信用のAPIキーなど
-  // SENDGRID_API_KEY: string;
+  // SENDGRID_API_KEY?: string;
+  [key: string]: unknown;
 }
 
 export default {
@@ -13,14 +14,14 @@ export default {
    * Cloudflareランタイムがこのfetchハンドラを呼び出す前にレスポンスを返す。
    * したがって、このコードは主にAPIエンドポイントのような動的リクエストを処理するために存在する。
    */
-  async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+  async fetch(request: Request, _env: Env, _ctx: unknown): Promise<Response> {
     const url = new URL(request.url);
 
     // APIルート: /api/feedback へのPOSTリクエストのみを処理
     if (url.pathname === '/api/feedback' && request.method === 'POST') {
       try {
         // リクエストボディをJSONとしてパース
-        const feedbackData: { [key: string]: any } = await request.json();
+        const feedbackData: Record<string, unknown> = await request.json();
         
         // ここで外部サービス（例: SendGrid, Slack API）にフィードバックを送信するロジックを実装
         // await sendFeedbackToExternalService(feedbackData, env);
