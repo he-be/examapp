@@ -26,7 +26,7 @@ class NetworkErrorImpl extends Error implements NetworkError {
   constructor(
     message: string,
     public status?: number,
-    public details?: any
+    public details?: unknown
   ) {
     super(message);
     this.name = 'NetworkError';
@@ -44,7 +44,7 @@ interface CacheEntry<T> {
 }
 
 class DataCache {
-  private cache = new Map<string, CacheEntry<any>>();
+  private cache = new Map<string, CacheEntry<unknown>>();
 
   set<T>(key: string, data: T, duration: number = CACHE_DURATION): void {
     const now = Date.now();
@@ -155,7 +155,7 @@ async function fetchJSON<T>(url: string): Promise<T> {
 /**
  * 問題データの基本構造を検証
  */
-function validateQuestionStructure(question: any): question is Question {
+function validateQuestionStructure(question: unknown): question is Question {
   if (!question || typeof question !== 'object') {
     return false;
   }
@@ -168,8 +168,9 @@ function validateQuestionStructure(question: any): question is Question {
     }
   }
 
-  if (!['multiple-choice', 'numeric', 'text'].includes(question.type)) {
-    console.error(`Invalid question type: ${question.type}`);
+  const q = question as Record<string, unknown>;
+  if (!['multiple-choice', 'numeric', 'text'].includes(q.type as string)) {
+    console.error(`Invalid question type: ${q.type}`);
     return false;
   }
 
@@ -179,7 +180,7 @@ function validateQuestionStructure(question: any): question is Question {
 /**
  * MMLU問題データの検証
  */
-function validateMMLUQuestion(question: any): question is MMLUQuestion {
+function validateMMLUQuestion(question: unknown): question is MMLUQuestion {
   if (!validateQuestionStructure(question)) return false;
 
   if (question.type !== 'multiple-choice') return false;
@@ -197,7 +198,7 @@ function validateMMLUQuestion(question: any): question is MMLUQuestion {
 /**
  * GSM-8K問題データの検証
  */
-function validateGSM8KQuestion(question: any): question is GSM8KQuestion {
+function validateGSM8KQuestion(question: unknown): question is GSM8KQuestion {
   if (!validateQuestionStructure(question)) return false;
 
   if (question.type !== 'numeric') return false;
@@ -212,13 +213,13 @@ function validateGSM8KQuestion(question: any): question is GSM8KQuestion {
 /**
  * ベンチマーク別のデータ検証
  */
-function validateQuestionsByType(questions: any[], testType: TestType): boolean {
+function validateQuestionsByType(questions: unknown[], testType: TestType): boolean {
   if (!Array.isArray(questions) || questions.length === 0) {
     console.error('Questions must be a non-empty array');
     return false;
   }
 
-  const validators: Record<TestType, (q: any) => boolean> = {
+  const validators: Record<TestType, (q: unknown) => boolean> = {
     mmlu: validateMMLUQuestion,
     gsm8k: validateGSM8KQuestion,
     hellaswag: validateQuestionStructure, // 基本検証のみ（後で拡張）
@@ -473,6 +474,7 @@ export function clearDataCache(): void {
 export function getCacheStats(): { size: number; entries: string[] } {
   return {
     size: dataCache.size(),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     entries: Array.from((dataCache as any).cache.keys()),
   };
 }

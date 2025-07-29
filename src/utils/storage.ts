@@ -35,7 +35,7 @@ class StorageErrorImpl extends Error implements StorageError {
   constructor(
     message: string,
     public operation: 'read' | 'write' | 'delete',
-    public details?: any
+    public details?: unknown
   ) {
     super(message);
     this.name = 'StorageError';

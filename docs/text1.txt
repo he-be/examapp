@@ -1,0 +1,397 @@
+Cloudflareでのフルスタック開発完全ガイド：Workersによる統一アプローチ
+
+
+
+
+エキスパートの紹介
+
+
+本レポートは、クラウドアーキテクチャ、サーバーレスコンピューティング、および開発者プラットフォーム戦略を専門とするシニアテクニカルアナリストによって執筆されました。当アナリストは、エンタープライズレベルのシステム設計と、最新のウェブ技術トレンドに関する深い知見を有しており、複雑な技術的変遷を明確かつ実行可能な戦略的ガイダンスに落とし込むことを得意としています。その分析は、技術的リーダーや開発チームがプラットフォームの選定とアーキテクチャ設計において、情報に基づいた意思決定を行うための支援を目的としています。
+________________
+
+
+エグゼクティブサマリー
+
+
+本レポートは、Cloudflareのデベロッパープラットフォームにおけるフルスタックアプリケーション開発に関する包括的な指示書です。近年のCloudflareにおける最も重要な戦略的転換は、従来Cloudflare PagesとCloudflare Workersという2つの主要製品に分かれていた開発体験を、Cloudflare Workersに集約・統一した点にあります 1。この統合により、Workersは静的アセットのホスティングというPagesの主要機能を取り込み、サーバーレスコンピューティング、データストレージ、AIサービスといったCloudflareのエコシステム全体とシームレスに連携する、唯一かつ強力なフルスタック開発プラットフォームへと進化しました。
+本レポートの核心的な勧告は、すべての新規プロジェクトをCloudflare Workers上で開始することです。これにより、開発者はプラットフォームの全機能を最大限に活用し、将来的な技術的負債を回避することができます。Cloudflare Pagesは引き続きサポートされるものの、今後の新機能開発や最適化はすべてWorkersに集中されるため、Pagesを新規に採用することは戦略的に推奨されません 1。
+既存のPagesプロジェクトについては、Workersへの明確な移行パスが提供されています。本レポートでは、設定ファイルの変換、CI/CDパイプラインの更新、フレームワーク固有の考慮事項を含む、詳細なステップバイステップの移行ガイドを提示します。
+最終的に、本レポートは技術リーダーおよびシニア開発者が、Cloudflareの統一されたプラットフォーム上で、スケーラブルかつ高性能な最新のフルスタックアプリケーションを自信を持って設計、構築、デプロイ、移行するための一元的な情報源となることを目的としています。
+
+
+第1章 Cloudflareデベロッパープラットフォームの統一：戦略的分析
+
+
+この章では、Cloudflareがなぜプラットフォームの進化を選択したのか、その戦略的背景を解説します。この「なぜ」を理解することは、後続のすべての技術的勧告を理解するための基礎となります。
+
+
+1.1. 二つの道から一つの道へ：開発者のジレンマの解消
+
+
+歴史的に、Cloudflareはウェブ開発者向けに2つの異なる、しかし一部機能が重複する製品を提供していました。一つは、フロントエンド開発者向けに最適化され、Gitベースのシームレスなワークフローを特徴とするJAMstackプラットフォームであるCloudflare Pagesです 2。もう一つは、バックエンドロジックを実行するための強力なサーバーレスコンピューティング環境である
+Cloudflare Workersでした 6。
+この2つの製品間の橋渡しとして、Pagesプロジェクトに動的な機能を追加するためのPages Functionsが導入されました。これはWorkersのランタイム上で動作するものでしたが 7、結果として開発体験は二分化されることになりました。開発者はどちらの製品から始めるべきかを選択する必要に迫られ、両者の長所を活かすためには両製品を組み合わせた複雑な構成になることもしばしばありました 1。
+この開発者の摩擦、すなわち「選択のパラドックス」は、プラットフォーム採用の障壁となり得ます。PagesはフロントエンドのDX（GitOps、プレビューデプロイメント）に優れ、一方WorkersはCloudflareエコシステム全体（D1, R2, KV, AI）へのネイティブバインディングを持つ、制約の少ない強力なバックエンドコンピューティングに秀でていました 10。Pages Functionsは、Workersの全機能のごく一部を提供するに過ぎませんでした。
+この問題に対する戦略的解決策として、Cloudflareは2024年9月に、静的アセットのホスティング機能をWorkersに直接統合することを発表しました 1。これは、単にPages Functionsを強化する（それは実質的にWorkersを再発明することになる）のではなく、Pagesの核心的な強みである静的アセットの扱いを、より強力で柔軟なWorkersプラットフォームに組み込むというアプローチでした。
+この戦略的転換は、単なる製品の統合以上の意味を持ちます。これはCloudflareの再ポジショニングです。Workersを第一級のフルスタックプラットフォームとすることで、Cloudflareはもはや単なるエッジコンピューティングのプロバイダーではなく、VercelやNetlifyといった競合とアプリケーションのライフサイクル全体で直接競合する存在へと変貌を遂げたのです。Workersは「機能」から、包括的な「プラットフォーム」へと昇華しました。
+
+
+1.2. 「非推奨」ではなく「後継」：重要な明確化
+
+
+Cloudflare Pagesの現状について、正確な理解が不可欠です。公式ドキュメントでは、新規プロジェクトにはWorkersの使用が一貫して推奨されています 11。Cloudflareは公式に「Cloudflare Pagesは引き続きサポートされますが、今後の投資、最適化、機能開発はすべてWorkersの改善に注力されます」と述べています 1。
+このメッセージは開発者コミュニティ内で混乱を引き起こし、一部ではPagesが非推奨（deprecated）になるという誤解を生んでいます 13。この混乱は、名称が似ている
+Page Rulesという全く別の機能が実際に非推奨となっていることによって、さらに増幅されています 14。
+ここには、プラットフォーム移行を円滑に進めるための戦略的な意図が読み取れます。Cloudflareは既存の膨大なユーザーベースを考慮し、Pagesを即座に廃止することはできません。そのため、レガシープラットフォームでの新規機能開発を凍結しつつ、新プラットフォームへの移行を奨励するという、一般的な移行戦略を採用しています。
+したがって、「サポートされる」とは、既存のプロジェクトは機能し続けるが、新しい機能やパフォーマンスの最適化は提供されないことを意味します。この状況を最も正確に表す言葉は「非推奨」ではなく「後継（superseded）」です。本レポートを読む開発チームにとっての指示は明確です。2025年以降のすべての新規開発は、Cloudflare Workers上で行うべきです。 新規プロジェクトでPagesを選択することは、初日から技術的負債を抱え込む戦略的誤りとなります。
+
+
+1.3. 機能の同等性とそれを超える力：統合の真価
+
+
+Pagesを魅力的にしていた主要な機能は、Workersに移植されました。これには、無料の静的アセットホスティング 1、Workerコードを実行せずにヘッダーやリダイレクトを簡単に設定できる
+_headersおよび_redirectsファイルの使用 1、そして
+Workers BuildsによるシームレスなGit統合CI/CDが含まれます 1。
+しかし、真の価値は単にPagesの機能を模倣することにあるのではありません。それは、これらの機能をWorkersエコシステムの全能力と組み合わせることにあります。
+この統合がもたらす相乗効果は計り知れません。以前のモデルでは、PagesサイトがPages Functionsを通じてKVやD1を利用できましたが、その開発モデルにはある程度の制約があり、アドオン的な感覚は否めませんでした。
+新しい統一モデルでは、単一のWorkerプロジェクトがフロントエンド（静的アセット）とバックエンド（APIルート、サーバーサイドレンダリング）の両方をネイティブに扱います。これは、一つのwrangler.jsonc設定ファイルで、Reactのフロントエンド、/api/エンドポイント、ユーザーデータ用のD1データベースバインディング、ファイルアップロード用のR2バケットバインディング、そしてテキスト生成用のWorkers AIバインディングまでを定義できることを意味します。
+この単一プロジェクトコンテキスト内での緊密な統合は、複雑なフルスタックアプリケーションのアーキテクチャを劇的に簡素化します。多くの一般的なユースケースにおいて、個別のマイクロサービスや複雑なサービス間通信の必要性がなくなり、エッジ上でより強力な「サーバーレスモノリス」アーキテクチャを実現可能にするのです。
+
+
+第2章 Cloudflare上でのモダンアプリケーションの設計
+
+
+この章では、戦略からアーキテクチャへと焦点を移し、統一されたプラットフォーム上でアプリケーションを設計するための青写真を提供します。
+
+
+2.1. Workers中心のリファレンスアーキテクチャ
+
+
+アプリケーションアーキテクチャは、主要なリクエストハンドラおよびオーケストレータとして機能する中央のCloudflare Workerを中心に展開されます 10。リクエストのフローは以下のようになります。
+1. クライアントリクエスト: ユーザーのブラウザがリクエストを送信します。
+2. セキュリティ＆パフォーマンスレイヤー: Cloudflareのネットワークサービス（WAF、DDoS防御、CDN、Argo Smart Routing）が最初にリクエストを処理します。静的アセットはこの段階でグローバルキャッシュから配信されることがあります 10。
+3. コンピュート（Worker）: リクエストはWorkerに到達します。Worker内のロジックが、どのように応答するかを決定します。
+   * プロジェクトにデプロイされた静的アセットを配信する。
+   * APIエンドポイント（例: /api/users）を実行する。
+   * フルスタックフレームワークのためにサーバーサイドレンダリング（SSR）を実行する。
+   * 認証やロギングなどのミドルウェアとして機能し、他のサービスにリクエストをプロキシする。
+4. データ＆ストレージレイヤー: Workerはバインディングを介して様々なストレージサービス（D1, R2, KV, Durable Objects, Vectorize）と対話し、データを取得または永続化します 10。
+5. レスポンス: Workerは最終的なレスポンスを構築し、クライアントに返します。
+このアーキテクチャにより、アプリケーションのロジックが単一のコンピュート環境に集約され、Cloudflareの提供する多様なバックエンドサービスとの連携が極めて容易になります。
+
+
+2.2. Cloudflareエコシステムの統合：実践ガイド
+
+
+Workersプロジェクトでは、Cloudflareのバックエンドサービスが第一級の構成要素となります。以下に、主要なサービスの活用方法を詳述します。
+* D1によるリレーショナルデータ: 構造化データ、ユーザー情報、リレーショナルなクエリにはD1が最適です。Workerはwrangler.jsoncで定義されたD1バインディングを介してデータベースに接続します 10。
+* R2によるオブジェクトストレージ: 画像や動画、その他の大容量ファイルといったユーザー生成コンテンツの保存に適しています。特に、データ転送（egress）費用がゼロである点が大きな利点です 10。
+* KVによるキーバリューストレージ: 設定情報、フィーチャーフラグ、セッション情報など、読み取り頻度が高く低遅延アクセスが求められるデータに最適です。データはグローバルに分散され、高速なアクセスが可能です 10。
+* Durable Objectsによるステートフルな連携: チャットルーム、共同編集ドキュメント、ゲームのロビーなど、単一のステートフルなWorkerインスタンスが必要なリアルタイムアプリケーションに利用されます。データが保存されている場所の近くでロジックが実行されるため、低遅延が実現されます 10。
+* AIとベクトル検索: AIを活用した機能を構築するために、WorkerはWorkers AIモデルを呼び出してテキスト生成などのタスクを実行したり、Vectorizeを利用してセマンティック検索や推薦機能を実現したりできます 10。
+
+
+2.3. 表：適切なCloudflareストレージソリューションの選択
+
+
+アーキテクチャ設計における最も重要な決定の一つが、適切なストレージバックエンドの選択です。以下の表は、コストのかかる設計ミスを防ぐための、一目でわかるガイドを提供します。この表は、開発者が複数のストレージオプション（D1, R2, KV, Durable Objects）の中から、特定のユースケースに最適なものを選択する際の判断基準を明確にすることを目指しています 10。
+
+
+特徴
+	Workers KV
+	R2 Storage
+	D1 Database
+	Durable Objects
+	データモデル
+	キーバリュー
+	オブジェクト (Blob)
+	リレーショナル (SQL)
+	ステートフルオブジェクト
+	理想的なユースケース
+	設定、フィーチャーフラグ、認証トークン
+	ユーザーアップロード、画像、大容量ファイル
+	ユーザーデータ、商品カタログ、構造化コンテンツ
+	リアルタイムチャット、ゲーム状態、共同編集
+	一貫性
+	結果整合性 (高可用性)
+	強力な整合性
+	強力な整合性 (D1のアーキテクチャによる)
+	強力な整合性 (単一オブジェクト内)
+	読み取りレイテンシ
+	最低 (グローバルにキャッシュ)
+	低
+	低～中 (クエリに依存)
+	最低 (オブジェクトと同一配置)
+	書き込みレイテンシ
+	高 (グローバルに伝播)
+	低
+	低～中
+	低
+	コスト要因
+	読み取り、書き込み、ストレージ
+	ストレージ、クラスA/B操作 (Egress費用なし)
+	読み書きされた行数、ストレージ、クエリ
+	実行時間、リクエスト数、メモリ使用量
+	参照スニペット
+	6
+	6
+	6
+	6
+	
+
+第3章 実装と設定の詳細
+
+
+この章では、フルスタックWorkersプロジェクトを構成するための、実践的かつ具体的な手順を解説します。
+
+
+3.1. wrangler.jsoncの習得：信頼できる唯一の情報源
+
+
+Cloudflareは現在、新規プロジェクトにおいて従来のwrangler.tomlよりもwrangler.jsoncの使用を推奨しています。これは、JavaScriptエコシステム内でのツールサポート（コメントやスキーマなど）が優れているためです 19。本レポートでは、すべての例で
+wrangler.jsoncを使用します。
+設定ファイルの必須フィールドは、name（Worker名）、compatibility_date（互換性日付）、そしてmain（Workerのエントリーポイント）です 11。
+異なる環境（dev、staging、production）を管理するためには、envキーを使用するのがベストプラクティスです。これにより、環境ごとに変数、シークレット、バインディングを上書きすることが可能になります 20。
+
+
+3.2. 静的アセットの配信：SPA vs. SSG
+
+
+assets設定は、Workers上でのフルスタック開発の基礎となります。wrangler.jsonc内のassetsキーは、Pages設定におけるpages_build_output_dirを置き換えるものです 11。
+
+
+シングルページアプリケーション（SPA）の設定
+
+
+SPAでは、/dashboardや/profileのようなURLはクライアントサイドのルーティングによって処理されます。サーバーへのこれらのパスに対する直接のリクエストは、通常404エラーを返します。
+この問題を解決するには、wrangler.jsoncでassets.not_found_handling = "single-page-application"と設定します。これにより、特定の静的ファイルに一致しないナビゲーションリクエストに対して、プロジェクトのindex.htmlを配信するようWorkersに指示できます 11。
+wrangler.jsoncのコード例:
+
+
+JSON
+
+
+
+
+{
+ "name": "my-spa-worker",
+ "compatibility_date": "2025-04-01",
+ "main": "src/index.ts",
+ "assets": {
+   "directory": "./dist",
+   "not_found_handling": "single-page-application"
+ }
+}
+
+
+
+静的サイトジェネレーター（SSG）の設定
+
+
+AstroやEleventyのようなフレームワークの場合、設定はよりシンプルです。アセットディレクトリを指定し、404ページを正しく処理するために、出力ディレクトリに404.htmlファイルを用意した上でassets.not_found_handling = "404-page"と設定します 11。
+
+
+3.3. フレームワーク固有のガイダンス
+
+
+Cloudflareは、Remix (React Router v7)、Astro、Hono、Nuxt、SvelteKitなど、多くのフレームワークに対して一般提供（GA）サポートを提供しています 1。Next.js、Angular、SolidStartのGAサポートは2025年第2四半期に予定されています 1。
+特に重要なのがViteとの統合です。Cloudflare Viteプラグイン（@cloudflare/vite-plugin）はv1.0がGAとなり、Vite開発サーバーをWorkersランタイム（workerd）上で直接実行できるようになりました。これにより、D1やR2といったWorkers固有の機能にアクセスしながら、シームレスなローカル開発体験が可能になります 1。
+Next.jsについては、@opennextjs/cloudflareアダプターが推奨されており、GAに向けて開発が進められています。これは、公式のNext.js Deployments APIとの統合を見据えたものであり、今後の動向を注視すべき重要な領域です 1。
+
+
+第4章 PagesからWorkersへの実践的移行ガイド
+
+
+この章は、公式ガイドを実用的なチェックリストに落とし込んだ、移行のための専用指示書です。
+
+
+4.1. ステップバイステップの移行プロセス
+
+
+1. フレームワークアダプターの切り替え: フレームワークを使用している場合、Pages固有のアダプターからWorkers対応のアダプターに切り替えます 11。
+2. wrangler.jsoncの作成: 存在しない場合は、プロジェクトのルートにwrangler.jsoncファイルを作成します。
+3. nameとcompatibility_dateの設定: 新しいWorkerの名前を決定し、Pages Functionsの設定で使用していたものと同じ互換性日付を設定します 11。
+4. 静的アセットの設定: Pagesのビルド設定を、wrangler.jsonc内の新しいassets設定に変換します（詳細は後述の表を参照）。
+5. 配信挙動の設定: Pagesでの挙動を再現するため、assets.not_found_handlingを"single-page-application"または"404-page"に明示的に設定します 11。
+6. 無視するファイルの処理: Pagesが自動的に除外していたnode_modulesのようなファイルを無視するため、静的アセットディレクトリに.assetsignoreファイルを作成します 11。
+7. CI/CDパイプラインの更新: GitHub Actionsワークフローで、cloudflare/pages-actionからcloudflare/wrangler-actionへの移行を行います 24。
+
+
+4.2. 表：設定マッピング（PagesからWorkersへ）
+
+
+この表は、移行作業を行う開発者にとって最も重要なツールです。古い概念を新しい概念に直接変換することで、エラーを減らし、調査時間を短縮します。これは、移行プロセスのための「ロゼッタストーン」として機能します。
+
+
+Pages設定 (wrangler.toml)
+	Workers設定 (wrangler.jsonc)
+	目的・注意点
+	参照スニペット
+	pages_build_output_dir = "./dist"
+	"assets": { "directory": "./dist" }
+	静的アセットを含むディレクトリを指定します。
+	11
+	(404.htmlがない場合の暗黙的なSPA挙動)
+	"assets": { "not_found_handling": "single-page-application" }
+	一致しないナビゲーションリクエストに対しindex.htmlを返すよう明示的に設定します。
+	11
+	(404.htmlファイルの存在)
+	"assets": { "not_found_handling": "404-page" }
+	カスタム404ページを配信するよう明示的に設定します。
+	11
+	(自動的なファイル除外)
+	アセットディレクトリに.assetsignoreファイルを作成
+	.gitやnode_modulesのようなファイルを無視する挙動を再現します。
+	11
+	[vars]
+	"vars": {... }
+	環境変数を定義します。
+	19
+	(バインディングのダッシュボード設定)
+	"kv_namespaces": [...], "d1_databases": [...] など
+	バインディングはwrangler.jsoncで明示的に定義する必要があります。
+	19
+	
+
+4.3. CI/CDの移行：pages-actionからwrangler-actionへ
+
+
+GitHub Actions用のcloudflare/pages-actionは公式に非推奨となり、アーカイブされています 24。今後は、PagesとWorkersの両方のデプロイに
+cloudflare/wrangler-actionを使用する必要があります。
+YAMLの構文が異なるため、注意が必要です。wrangler-actionでは、プロジェクト名やディレクトリといった情報はwrangler.jsoncファイルから読み込まれるため、アクションのwithブロックがよりシンプルになります。
+pages-actionの例（レガシー）:
+
+
+YAML
+
+
+
+
+- name: Publish to Cloudflare Pages
+ uses: cloudflare/pages-action@v1
+ with:
+   apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+   accountId: YOUR_ACCOUNT_ID
+   projectName: YOUR_PROJECT_NAME
+   directory: YOUR_BUILD_OUTPUT_DIRECTORY
+   branch: main
+
+wrangler-actionの例（現在）:
+
+
+YAML
+
+
+
+
+- name: Publish to Cloudflare Workers
+ uses: cloudflare/wrangler-action@v3
+ with:
+   apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+   accountId: YOUR_ACCOUNT_ID
+
+wrangler-actionは当初、デプロイURLの出力などの機能が不足していましたが、継続的に改善されています。移行の際は、最新のwrangler-actionのドキュメントで機能の同等性を確認することが推奨されます 24。
+
+
+第5章 デプロイ、可観測性、および高度な概念
+
+
+この章では、本番環境でフルスタックアプリケーションを運用する際の運用面について解説します。
+
+
+5.1. Workers BuildsとGit統合
+
+
+Workers Buildsは、GitHubまたはGitLabからのGitネイティブなデプロイパイプラインを提供します 1。近年の改善により、ビルドの開始時間が最大6秒短縮され、APIの応答性も向上しています 1。
+Pagesの重要な機能であったプレビューデプロイメントもサポートされています。非本番ブランチでWorkers Buildsを実行するように設定すると、プルリクエストに一意のプレビューURLがコメントとして投稿されます 1。
+2025年4月2日に導入された新しい料金モデルにも注意が必要です。無料プランのユーザーはビルド時間が3,000分に制限され、有料プランではより多くのビルド時間と同時ビルド数が提供されます 1。
+
+
+5.2. 環境とシークレットの管理
+
+
+wrangler.jsonc内の[env.name]ブロックを使用して、環境固有の設定を管理します 20。APIキーなどの機密データには、Wranglerのシークレット管理機能を使用します。これは環境設定と統合されています。
+CI/CDパイプラインでは、CLOUDFLARE_API_TOKENのような本番用トークンをGitHub Secretsに保存し、ワークフロー内で${{ secrets.SECRET_NAME }}構文を使用して安全にアクセスするのがベストプラクティスです 25。
+
+
+5.3. 可観測性とデバッグ
+
+
+Workersプラットフォームは、包括的な可観測性ツールスイートを提供します 10。
+* ログ: Cloudflareダッシュボードからリアルタイムログにアクセスしたり、Logpushを使用してサードパーティのサービスにストリーミングしたりできます 6。
+* メトリクスと分析: 組み込みの分析機能を使用して、リクエスト、CPU時間、エラーを監視します。カスタムメトリクスが必要な場合は、Workers Analytics Engineと統合します 10。
+* トレースとデバッグ: DevTools統合を利用して、ローカルでのデバッグやCPU・メモリ使用量のプロファイリングが可能です 6。
+
+
+第6章 結論と戦略的勧告
+
+
+この最終章では、本レポートの内容を要約し、開発チームが取るべき明確で実行可能な道筋を示します。
+
+
+6.1. 主要な調査結果の要約
+
+
+* Cloudflareのデベロッパープラットフォームは、戦略的にWorkersを中心に統一されました。
+* Workersは現在、強力なサーバーレスコンピューティングと、シームレスなフルスタック／フロントエンド開発ワークフローの両方を兼ね備えています。
+* 新規プロジェクトにおいてはPagesは後継製品であるWorkersにその役割を譲っており、既存プロジェクト向けには明確な移行パスが存在します。
+
+
+6.2. 開発者のための実行可能チェックリスト
+
+
+
+
+新規プロジェクト向け：
+
+
+1. プロジェクトの初期化には npx wrangler init my-worker を使用します。
+2. すべての設定は wrangler.jsonc で管理します。
+3. SPAを開発する場合、直ちに assets.not_found_handling を設定します。
+4. 最高のローカル開発体験を得るために、Cloudflare Viteプラグインを統合します。
+5. データやAIサービスとの連携は、Workersを中央のオーケストレータとして設計します。
+
+
+移行プロジェクト向け：
+
+
+1. 本レポートの第4.2章にある設定マッピング表を使用して、設定を変換します。
+2. フレームワークのアダプターを、Workers固有のバージョンに更新します。
+3. CI/CDパイプラインを、pages-action の代わりに wrangler-action を使用するように書き換えます。
+4. 本番のDNSを切り替える前に、プレビューデプロイメントで徹底的にテストします。
+
+
+6.3. プラットフォームの未来：将来を見据えた視点
+
+
+Cloudflareのプラットフォーム統一は、単なる製品整理ではありません。これは、エッジにおけるコンピューティング、ストレージ、AIの緊密な統合が、サーバーレス・フルスタックアプリケーション開発の未来をどう形作るかを示すものです。この統一されたプラットフォームは、リアルタイム、AI活用、グローバル分散といった新しいクラスのアプリケーションを、これまで以上に容易に構築・デプロイすることを可能にします。Cloudflareは、開発者がインフラストラクチャではなく、コードに集中できる環境を提供することで、ウェブ開発の次の時代をリードしていくでしょう。
+引用文献
+1. Your frontend, backend, and database — now in one Cloudflare ..., 7月 29, 2025にアクセス、 https://blog.cloudflare.com/full-stack-development-on-cloudflare-workers/
+2. Compare Cloudflare Pages vs. Cloudflare Workers in 2025 - Slashdot, 7月 29, 2025にアクセス、 https://slashdot.org/software/comparison/Cloudflare-Pages-vs-Cloudflare-Workers/
+3. Cloudflare Workers vs Cloudflare Functions vs Cloudflare Pages: A Comprehensive Comparison | by Sehban Alam | Medium, 7月 29, 2025にアクセス、 https://medium.com/@sehban.alam/cloudflare-workers-vs-cloudflare-functions-vs-cloudflare-pages-a-comprehensive-comparison-370dac4a858c
+4. Pages | Full-stack platform for frontend developers - Cloudflare, 7月 29, 2025にアクセス、 https://www.cloudflare.com/developer-platform/products/pages/
+5. Workers & Pages Pricing - Cloudflare, 7月 29, 2025にアクセス、 https://www.cloudflare.com/plans/developer-platform/
+6. Overview · Cloudflare Workers docs, 7月 29, 2025にアクセス、 https://developers.cloudflare.com/workers/
+7. Building Serverless Applications with Cloudflare Pages - CFE.dev, 7月 29, 2025にアクセス、 https://cfe.dev/sessions/moar2022-cloudflare-pages/
+8. Functions - Pages - Cloudflare Docs, 7月 29, 2025にアクセス、 https://developers.cloudflare.com/pages/functions/
+9. Spice up your sites on Cloudflare Pages with Pages Functions General Availability, 7月 29, 2025にアクセス、 https://blog.cloudflare.com/pages-function-goes-ga/
+10. Fullstack applications - Reference Architecture - Cloudflare Docs, 7月 29, 2025にアクセス、 https://developers.cloudflare.com/reference-architecture/diagrams/serverless/fullstack-application/
+11. Migrate from Pages to Workers · Cloudflare Workers docs, 7月 29, 2025にアクセス、 https://developers.cloudflare.com/workers/static-assets/migration-guides/migrate-from-pages/
+12. Overview · Cloudflare Pages docs, 7月 29, 2025にアクセス、 https://developers.cloudflare.com/pages/
+13. Workers vs Pages : r/CloudFlare - Reddit, 7月 29, 2025にアクセス、 https://www.reddit.com/r/CloudFlare/comments/1ip87mx/workers_vs_pages/
+14. Is Page Rules going to be deprecated? - Cloudflare Community, 7月 29, 2025にアクセス、 https://community.cloudflare.com/t/is-page-rules-going-to-be-deprecated/672761
+15. Page Rules are deprecated - Cloudflare Community, 7月 29, 2025にアクセス、 https://community.cloudflare.com/t/page-rules-are-deprecated/664235
+16. API deprecations · Cloudflare Fundamentals docs, 7月 29, 2025にアクセス、 https://developers.cloudflare.com/fundamentals/api/reference/deprecations/
+17. Weebly and Cloudflare Page Rules (Deprecated) - Reddit, 7月 29, 2025にアクセス、 https://www.reddit.com/r/Weebly/comments/1cy3x4p/weebly_and_cloudflare_page_rules_deprecated/
+18. Full-stack application · Cloudflare Workers docs, 7月 29, 2025にアクセス、 https://developers.cloudflare.com/workers/static-assets/routing/full-stack-application/
+19. Configuration - Wrangler · Cloudflare Workers docs, 7月 30, 2025にアクセス、 https://developers.cloudflare.com/workers/wrangler/configuration/
+20. Configuration · Cloudflare Pages docs, 7月 30, 2025にアクセス、 https://developers.cloudflare.com/pages/functions/wrangler-configuration/
+21. The future of Wrangler configuration · cloudflare workers-sdk · Discussion #1951 - GitHub, 7月 30, 2025にアクセス、 https://github.com/cloudflare/workers-sdk/discussions/1951
+22. wrangler.toml - marmelab/cloudflare-ai-assistant · GitHub, 7月 30, 2025にアクセス、 https://github.com/marmelab/cloudflare-ai-assistant/blob/main/wrangler.toml
+23. Single Page Application (SPA) · Cloudflare Workers docs, 7月 30, 2025にアクセス、 https://developers.cloudflare.com/workers/static-assets/routing/single-page-application/
+24. cloudflare/pages-action: DEPRECATED, please use wrangler-action - GitHub, 7月 29, 2025にアクセス、 https://github.com/cloudflare/pages-action
+25. Using secrets in GitHub Actions - GitHub Docs, 7月 30, 2025にアクセス、 https://docs.github.com/actions/security-guides/using-secrets-in-github-actions
+26. Best Practices for Managing Secrets in GitHub Actions - Blacksmith, 7月 30, 2025にアクセス、 https://www.blacksmith.sh/blog/best-practices-for-managing-secrets-in-github-actions
+27. Using secrets with Github Workflows | by Min_Minu - Medium, 7月 30, 2025にアクセス、 https://medium.com/@reach2shristi.81/using-secrets-with-github-workflows-9e5914211f75
+28. How To Use GitHub Actions Secrets To Hide Sensitive Data? - Kinsta, 7月 30, 2025にアクセス、 https://kinsta.com/blog/github-actions-secret/
+29. wrangler 1.3.1 - Docs.rs, 7月 30, 2025にアクセス、 https://docs.rs/crate/wrangler/1.3.1

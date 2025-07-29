@@ -20,7 +20,7 @@ export interface BaseQuestion {
   question: string;
   correctAnswer: string | number;
   explanation: string;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 /**
@@ -170,7 +170,7 @@ export interface FeedbackRequest {
   questionId?: string;
   feedbackText: string;
   userScore?: number;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 /**
@@ -179,7 +179,7 @@ export interface FeedbackRequest {
 export interface APISuccessResponse {
   success: true;
   message: string;
-  data?: any;
+  data?: unknown;
 }
 
 /**
@@ -252,7 +252,7 @@ export class TestError extends Error {
   constructor(
     message: string,
     public code: string,
-    public details?: any
+    public details?: unknown
   ) {
     super(message);
     this.name = 'TestError';
@@ -263,7 +263,7 @@ export class StorageError extends Error {
   constructor(
     message: string,
     public operation: 'read' | 'write' | 'delete',
-    public details?: any
+    public details?: unknown
   ) {
     super(message);
     this.name = 'StorageError';
@@ -274,7 +274,7 @@ export class NetworkError extends Error {
   constructor(
     message: string,
     public status?: number,
-    public details?: any
+    public details?: unknown
   ) {
     super(message);
     this.name = 'NetworkError';
