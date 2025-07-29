@@ -1,0 +1,21 @@
+name = "examapp"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+# Development settings
+[dev]
+port = 8787
+local_protocol = "http"
+
+# Production environment
+[env.production]
+name = "examapp"
+
+# Build settings
+[build]
+command = "npm run build"
+
+# Miniflare settings for local development
+[miniflare]
+# Enable KV namespaces, Durable Objects, etc. when needed
+kv_persist = true
