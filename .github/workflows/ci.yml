@@ -52,14 +52,15 @@ jobs:
           key: build-${{ github.sha }}
           base: /tmp/cache
 
-      # 5. Playwrightブラウザのキャッシュ（ローカルキャッシュ使用）
-      - name: Cache Playwright browsers
-        uses: corca-ai/local-cache@v2
-        id: playwright-cache
-        with:
-          path: ${{ runner.temp }}/ms-playwright
-          key: playwright-${{ hashFiles('**/package-lock.json') }}
-          base: /tmp/cache
+      # 5. Playwrightブラウザのキャッシュは一時的に無効化
+      # corca-ai/local-cache@v2 はパス展開に問題があるため
+      # - name: Cache Playwright browsers
+      #   uses: corca-ai/local-cache@v2
+      #   id: playwright-cache
+      #   with:
+      #     path: ~/.cache/ms-playwright
+      #     key: playwright-${{ hashFiles('**/package-lock.json') }}
+      #     base: /tmp/cache
 
       # 6. 依存関係をインストールする（高速化オプション付き）
       - name: Install dependencies
@@ -87,21 +88,19 @@ jobs:
         if: github.event_name == 'pull_request' && github.ref == 'refs/heads/main'
         uses: davelosert/vitest-coverage-report-action@v2
 
-      # 11. Playwrightブラウザのインストール（キャッシュがない場合のみ）
+      # 11. Playwrightブラウザのインストール
       - name: Install Playwright browsers
-        if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: PLAYWRIGHT_BROWSERS_PATH=${{ runner.temp }}/ms-playwright npx playwright install chromium
+        run: npx playwright install chromium
 
       # 12. プロジェクトのビルド
       - name: Build project
         run: npm run build
 
-            # 13. E2Eテストを実行する
+      # 13. E2Eテストを実行する
       - name: Run E2E tests
         run: npx playwright test
         env:
           CI: true
-          PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/ms-playwright
 
       # 14. Cloudflare Workers へのデプロイ（mainブランチのみ）
       - name: Deploy to Cloudflare Workers
