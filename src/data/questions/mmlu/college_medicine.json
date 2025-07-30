@@ -1,0 +1,259 @@
+{
+  "metadata": {
+    "category": "college_medicine",
+    "name": "College Medicine",
+    "description": "Medical knowledge, anatomy, physiology, and clinical reasoning",
+    "domain": "Professional",
+    "difficulty": "hard",
+    "source": "MMLU validation set",
+    "pool_size": 60,
+    "last_updated": "2024-01-30"
+  },
+  "questions": [
+    {
+      "id": "mmlu-med-001",
+      "type": "multiple-choice",
+      "question": "Which hormone is primarily responsible for regulating blood calcium levels?",
+      "choices": ["Insulin", "Thyroxine", "Parathyroid hormone", "Cortisol"],
+      "correctAnswer": 2,
+      "explanation": "Parathyroid hormone (PTH) is the primary regulator of blood calcium levels, increasing calcium when levels are low.",
+      "category": "college_medicine",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-med-002",
+      "type": "multiple-choice",
+      "question": "The sinoatrial (SA) node is located in which chamber of the heart?",
+      "choices": ["Left atrium", "Right atrium", "Left ventricle", "Right ventricle"],
+      "correctAnswer": 1,
+      "explanation": "The SA node, the heart's natural pacemaker, is located in the wall of the right atrium.",
+      "category": "college_medicine",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-med-003",
+      "type": "multiple-choice",
+      "question": "Which cranial nerve is responsible for pupillary constriction?",
+      "choices": [
+        "Optic nerve (II)",
+        "Oculomotor nerve (III)",
+        "Trochlear nerve (IV)",
+        "Abducens nerve (VI)"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The oculomotor nerve (CN III) carries parasympathetic fibers that cause pupillary constriction.",
+      "category": "college_medicine",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-med-004",
+      "type": "multiple-choice",
+      "question": "What is the primary function of surfactant in the lungs?",
+      "choices": [
+        "Gas exchange",
+        "Reducing surface tension",
+        "Fighting infection",
+        "Mucus production"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Surfactant reduces surface tension in alveoli, preventing their collapse and facilitating breathing.",
+      "category": "college_medicine",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-med-005",
+      "type": "multiple-choice",
+      "question": "Which type of hypersensitivity reaction is mediated by IgE antibodies?",
+      "choices": ["Type I", "Type II", "Type III", "Type IV"],
+      "correctAnswer": 0,
+      "explanation": "Type I hypersensitivity (immediate/anaphylactic) is mediated by IgE antibodies and mast cell degranulation.",
+      "category": "college_medicine",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-med-006",
+      "type": "multiple-choice",
+      "question": "The blood-brain barrier is formed primarily by:",
+      "choices": ["Neurons", "Astrocytes and tight junctions", "Oligodendrocytes", "Microglia"],
+      "correctAnswer": 1,
+      "explanation": "The blood-brain barrier is formed by tight junctions between endothelial cells, with support from astrocyte end-feet.",
+      "category": "college_medicine",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-med-007",
+      "type": "multiple-choice",
+      "question": "Which enzyme deficiency causes phenylketonuria (PKU)?",
+      "choices": [
+        "Tyrosinase",
+        "Phenylalanine hydroxylase",
+        "Homogentisate oxidase",
+        "Cystathionine synthase"
+      ],
+      "correctAnswer": 1,
+      "explanation": "PKU is caused by deficiency of phenylalanine hydroxylase, which converts phenylalanine to tyrosine.",
+      "category": "college_medicine",
+      "difficulty": "hard",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-med-008",
+      "type": "multiple-choice",
+      "question": "The Frank-Starling mechanism describes:",
+      "choices": [
+        "Neural control of heart rate",
+        "Relationship between ventricular filling and stroke volume",
+        "Coronary blood flow regulation",
+        "Cardiac action potential"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The Frank-Starling mechanism states that increased ventricular filling leads to increased stroke volume.",
+      "category": "college_medicine",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-med-009",
+      "type": "multiple-choice",
+      "question": "Which cells produce insulin in the pancreas?",
+      "choices": ["Alpha cells", "Beta cells", "Delta cells", "PP cells"],
+      "correctAnswer": 1,
+      "explanation": "Beta cells in the pancreatic islets of Langerhans produce and secrete insulin.",
+      "category": "college_medicine",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-med-010",
+      "type": "multiple-choice",
+      "question": "The most common cause of peptic ulcer disease is:",
+      "choices": ["Stress", "Spicy food", "Helicobacter pylori infection", "Alcohol consumption"],
+      "correctAnswer": 2,
+      "explanation": "H. pylori infection is the most common cause of peptic ulcers, followed by NSAID use.",
+      "category": "college_medicine",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-med-011",
+      "type": "multiple-choice",
+      "question": "Which vitamin deficiency causes scurvy?",
+      "choices": ["Vitamin A", "Vitamin B12", "Vitamin C", "Vitamin D"],
+      "correctAnswer": 2,
+      "explanation": "Scurvy is caused by vitamin C (ascorbic acid) deficiency, affecting collagen synthesis.",
+      "category": "college_medicine",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-med-012",
+      "type": "multiple-choice",
+      "question": "The normal resting potential of a neuron is approximately:",
+      "choices": ["-90 mV", "-70 mV", "-50 mV", "-30 mV"],
+      "correctAnswer": 1,
+      "explanation": "The typical resting potential of a neuron is about -70 mV, maintained by the sodium-potassium pump.",
+      "category": "college_medicine",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-med-013",
+      "type": "multiple-choice",
+      "question": "Which structure separates the anterior and posterior chambers of the eye?",
+      "choices": ["Cornea", "Iris", "Lens", "Retina"],
+      "correctAnswer": 1,
+      "explanation": "The iris separates the anterior chamber (between cornea and iris) from the posterior chamber (between iris and lens).",
+      "category": "college_medicine",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-med-014",
+      "type": "multiple-choice",
+      "question": "The principal buffer system in human blood is:",
+      "choices": ["Phosphate buffer", "Protein buffer", "Bicarbonate buffer", "Ammonia buffer"],
+      "correctAnswer": 2,
+      "explanation": "The bicarbonate buffer system (HCO3-/H2CO3) is the primary buffer maintaining blood pH.",
+      "category": "college_medicine",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-med-015",
+      "type": "multiple-choice",
+      "question": "Which type of muscle contraction occurs without change in muscle length?",
+      "choices": ["Isotonic", "Isometric", "Eccentric", "Concentric"],
+      "correctAnswer": 1,
+      "explanation": "Isometric contraction occurs when muscle tension increases without change in muscle length.",
+      "category": "college_medicine",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-med-016",
+      "type": "multiple-choice",
+      "question": "The glomerular filtration rate (GFR) is primarily regulated by:",
+      "choices": [
+        "ADH only",
+        "Aldosterone only",
+        "Autoregulation and neural/hormonal mechanisms",
+        "Kidney size"
+      ],
+      "correctAnswer": 2,
+      "explanation": "GFR is regulated by intrinsic autoregulation (myogenic and tubuloglomerular feedback) and extrinsic neural/hormonal control.",
+      "category": "college_medicine",
+      "difficulty": "hard",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-med-017",
+      "type": "multiple-choice",
+      "question": "Which immunoglobulin can cross the placenta?",
+      "choices": ["IgA", "IgD", "IgG", "IgM"],
+      "correctAnswer": 2,
+      "explanation": "IgG is the only immunoglobulin that can cross the placenta, providing passive immunity to the fetus.",
+      "category": "college_medicine",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-med-018",
+      "type": "multiple-choice",
+      "question": "The primary pacemaker of the heart normally fires at:",
+      "choices": ["40-60 bpm", "60-100 bpm", "100-120 bpm", "120-140 bpm"],
+      "correctAnswer": 1,
+      "explanation": "The SA node, the heart's primary pacemaker, normally fires at 60-100 beats per minute.",
+      "category": "college_medicine",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-med-019",
+      "type": "multiple-choice",
+      "question": "Which cells are responsible for myelin production in the central nervous system?",
+      "choices": ["Schwann cells", "Oligodendrocytes", "Astrocytes", "Microglia"],
+      "correctAnswer": 1,
+      "explanation": "Oligodendrocytes produce myelin in the CNS, while Schwann cells produce myelin in the peripheral nervous system.",
+      "category": "college_medicine",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-med-020",
+      "type": "multiple-choice",
+      "question": "The hormone responsible for milk ejection during breastfeeding is:",
+      "choices": ["Prolactin", "Oxytocin", "Estrogen", "Progesterone"],
+      "correctAnswer": 1,
+      "explanation": "Oxytocin causes milk ejection (let-down reflex), while prolactin stimulates milk production.",
+      "category": "college_medicine",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    }
+  ]
+}

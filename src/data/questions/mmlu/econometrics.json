@@ -1,0 +1,314 @@
+{
+  "metadata": {
+    "category": "econometrics",
+    "name": "Econometrics",
+    "description": "Economic analysis, statistics, and quantitative methods",
+    "domain": "Social Sciences",
+    "difficulty": "medium-hard",
+    "source": "MMLU validation set",
+    "pool_size": 60,
+    "last_updated": "2024-01-30"
+  },
+  "questions": [
+    {
+      "id": "mmlu-econ-001",
+      "type": "multiple-choice",
+      "question": "What is the main consequence of heteroscedasticity in OLS regression?",
+      "choices": [
+        "Biased coefficient estimates",
+        "Inefficient estimates and invalid standard errors",
+        "Perfect multicollinearity",
+        "Spurious regression"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Heteroscedasticity leads to inefficient OLS estimates and invalid standard errors, but coefficients remain unbiased.",
+      "category": "econometrics",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-econ-002",
+      "type": "multiple-choice",
+      "question": "The Durbin-Watson statistic tests for:",
+      "choices": ["Heteroscedasticity", "Multicollinearity", "Serial correlation", "Normality"],
+      "correctAnswer": 2,
+      "explanation": "The Durbin-Watson statistic tests for first-order serial correlation in regression residuals.",
+      "category": "econometrics",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-econ-003",
+      "type": "multiple-choice",
+      "question": "In instrumental variables estimation, a valid instrument must be:",
+      "choices": [
+        "Correlated with the error term",
+        "Uncorrelated with the endogenous variable",
+        "Correlated with the endogenous variable and uncorrelated with the error term",
+        "Perfectly correlated with the dependent variable"
+      ],
+      "correctAnswer": 2,
+      "explanation": "A valid instrument must be relevant (correlated with endogenous variable) and exogenous (uncorrelated with error term).",
+      "category": "econometrics",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-econ-004",
+      "type": "multiple-choice",
+      "question": "What does the R-squared measure in a regression?",
+      "choices": [
+        "The correlation between variables",
+        "The proportion of variance explained by the model",
+        "The significance of coefficients",
+        "The normality of residuals"
+      ],
+      "correctAnswer": 1,
+      "explanation": "R-squared measures the proportion of variation in the dependent variable explained by the independent variables.",
+      "category": "econometrics",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-econ-005",
+      "type": "multiple-choice",
+      "question": "The White test is used to detect:",
+      "choices": [
+        "Autocorrelation",
+        "Heteroscedasticity",
+        "Multicollinearity",
+        "Omitted variables"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The White test is a general test for heteroscedasticity that doesn't require specification of its form.",
+      "category": "econometrics",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-econ-006",
+      "type": "multiple-choice",
+      "question": "What is the null hypothesis in a Hausman test for panel data?",
+      "choices": [
+        "Fixed effects is appropriate",
+        "Random effects is appropriate",
+        "No individual effects exist",
+        "The model is correctly specified"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The Hausman test null hypothesis is that random effects is appropriate (consistent and efficient).",
+      "category": "econometrics",
+      "difficulty": "hard",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-econ-007",
+      "type": "multiple-choice",
+      "question": "In time series, a unit root indicates:",
+      "choices": ["Stationarity", "Non-stationarity", "Seasonality", "Structural break"],
+      "correctAnswer": 1,
+      "explanation": "A unit root indicates non-stationarity, meaning the series has no tendency to revert to a mean.",
+      "category": "econometrics",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-econ-008",
+      "type": "multiple-choice",
+      "question": "The difference between AIC and BIC model selection criteria is:",
+      "choices": [
+        "AIC is for time series only",
+        "BIC has a larger penalty for additional parameters",
+        "AIC requires normality",
+        "BIC is only for linear models"
+      ],
+      "correctAnswer": 1,
+      "explanation": "BIC (Bayesian Information Criterion) imposes a larger penalty for additional parameters than AIC, especially in large samples.",
+      "category": "econometrics",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-econ-009",
+      "type": "multiple-choice",
+      "question": "What is the order of integration of a stationary time series?",
+      "choices": ["I(0)", "I(1)", "I(2)", "I(∞)"],
+      "correctAnswer": 0,
+      "explanation": "A stationary time series is integrated of order zero, denoted I(0).",
+      "category": "econometrics",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-econ-010",
+      "type": "multiple-choice",
+      "question": "In 2SLS estimation, the first stage involves:",
+      "choices": [
+        "Estimating the structural equation",
+        "Testing for endogeneity",
+        "Regressing endogenous variables on instruments",
+        "Calculating robust standard errors"
+      ],
+      "correctAnswer": 2,
+      "explanation": "In 2SLS, the first stage regresses endogenous variables on all exogenous variables including instruments.",
+      "category": "econometrics",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-econ-011",
+      "type": "multiple-choice",
+      "question": "The Gauss-Markov theorem states that OLS estimators are:",
+      "choices": [
+        "Always unbiased",
+        "BLUE under certain assumptions",
+        "Maximum likelihood estimators",
+        "Consistent in all cases"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The Gauss-Markov theorem proves OLS estimators are Best Linear Unbiased Estimators (BLUE) under classical assumptions.",
+      "category": "econometrics",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-econ-012",
+      "type": "multiple-choice",
+      "question": "Multicollinearity primarily affects:",
+      "choices": [
+        "The unbiasedness of OLS estimators",
+        "The precision of coefficient estimates",
+        "The R-squared value",
+        "The normality of residuals"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Multicollinearity increases standard errors, reducing the precision of coefficient estimates while maintaining unbiasedness.",
+      "category": "econometrics",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-econ-013",
+      "type": "multiple-choice",
+      "question": "A VAR model is used for:",
+      "choices": [
+        "Cross-sectional data only",
+        "Single equation estimation",
+        "Multiple time series analysis",
+        "Panel data with fixed effects"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Vector Autoregression (VAR) models analyze multiple time series and their dynamic interrelationships.",
+      "category": "econometrics",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-econ-014",
+      "type": "multiple-choice",
+      "question": "The problem of identification in simultaneous equations occurs when:",
+      "choices": [
+        "There are too many observations",
+        "Equations cannot be distinguished from linear combinations of others",
+        "Variables are perfectly correlated",
+        "The sample size is too small"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Identification problems arise when structural parameters cannot be uniquely determined from the reduced form.",
+      "category": "econometrics",
+      "difficulty": "hard",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-econ-015",
+      "type": "multiple-choice",
+      "question": "What does ARCH stand for in time series modeling?",
+      "choices": [
+        "Autoregressive Conditional Heteroscedasticity",
+        "Average Regression Conditional Hypothesis",
+        "Augmented Regression Characteristic Heterogeneity",
+        "Asymptotic Regression Conditional Homoscedasticity"
+      ],
+      "correctAnswer": 0,
+      "explanation": "ARCH (Autoregressive Conditional Heteroscedasticity) models time-varying volatility in financial time series.",
+      "category": "econometrics",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-econ-016",
+      "type": "multiple-choice",
+      "question": "In panel data, what distinguishes fixed effects from random effects?",
+      "choices": [
+        "Sample size requirements",
+        "Treatment of individual-specific effects",
+        "Number of time periods",
+        "Type of dependent variable"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Fixed effects treats individual effects as parameters to estimate, while random effects treats them as random variables.",
+      "category": "econometrics",
+      "difficulty": "hard",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-econ-017",
+      "type": "multiple-choice",
+      "question": "The Breusch-Pagan test statistic follows which distribution under the null hypothesis?",
+      "choices": ["Normal", "t-distribution", "Chi-squared", "F-distribution"],
+      "correctAnswer": 2,
+      "explanation": "The Breusch-Pagan test statistic follows a chi-squared distribution under the null of homoscedasticity.",
+      "category": "econometrics",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-econ-018",
+      "type": "multiple-choice",
+      "question": "Cointegration between two I(1) series implies:",
+      "choices": [
+        "They are stationary",
+        "A stationary linear combination exists",
+        "They are independent",
+        "They have the same mean"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Cointegration means that despite being individually non-stationary, a linear combination of the series is stationary.",
+      "category": "econometrics",
+      "difficulty": "hard",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-econ-019",
+      "type": "multiple-choice",
+      "question": "What is the purpose of differencing in time series analysis?",
+      "choices": [
+        "To increase R-squared",
+        "To achieve stationarity",
+        "To remove outliers",
+        "To improve forecasts"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Differencing is used to transform non-stationary series into stationary ones by removing trends.",
+      "category": "econometrics",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-econ-020",
+      "type": "multiple-choice",
+      "question": "In logit and probit models, marginal effects are:",
+      "choices": [
+        "Constant across all values",
+        "Equal to the coefficients",
+        "Dependent on the values of explanatory variables",
+        "Always zero"
+      ],
+      "correctAnswer": 2,
+      "explanation": "In nonlinear models like logit and probit, marginal effects vary with the values of explanatory variables.",
+      "category": "econometrics",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    }
+  ]
+}
