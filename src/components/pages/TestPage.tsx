@@ -94,7 +94,7 @@ const MMLUTestPage: React.FC = () => {
         return;
       }
 
-      const questionsToUse = Math.min(8, availableQuestions); // Use up to 8 questions, but no more than available
+      const questionsToUse = Math.min(20, availableQuestions); // Use up to 20 questions, but no more than available
 
       const session = getRandomQuestionsForSession(selectedCategoryId, questionsToUse);
       setCurrentSession(session);
