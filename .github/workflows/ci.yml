@@ -29,28 +29,43 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2. Node.js環境をセットアップする（キャッシュ付き）
+      # 2. Node.js環境をセットアップする
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           # 使用するNode.jsのバージョンを指定
           node-version: '20.x'
-          # npmの依存関係をキャッシュして、次回以降の実行を高速化する
-          cache: 'npm'
 
-      # 3. Playwrightブラウザのキャッシュ
+      # 3. node_modulesのキャッシュ（ローカルキャッシュ使用）
+      - name: Cache node_modules
+        uses: corca-ai/local-cache@v2
+        with:
+          path: node_modules
+          key: deps-${{ hashFiles('package-lock.json') }}
+          base: /tmp/cache
+
+      # 4. ビルド成果物のキャッシュ（ローカルキャッシュ使用）
+      - name: Cache build artifacts
+        uses: corca-ai/local-cache@v2
+        with:
+          path: dist
+          key: build-${{ github.sha }}
+          base: /tmp/cache
+
+      # 5. Playwrightブラウザのキャッシュ（ローカルキャッシュ使用）
       - name: Cache Playwright browsers
-        uses: actions/cache@v4
+        uses: corca-ai/local-cache@v2
         id: playwright-cache
         with:
           path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ hashFiles('**/package-lock.json') }}
+          key: playwright-${{ hashFiles('**/package-lock.json') }}
+          base: /tmp/cache
 
-      # 4. 依存関係をインストールする（高速化オプション付き）
+      # 6. 依存関係をインストールする（高速化オプション付き）
       - name: Install dependencies
         run: npm ci --prefer-offline --no-audit
 
-      # 5. 品質チェックを並列実行する
+      # 7. 品質チェックを並列実行する
       - name: Run quality checks in parallel
         run: |
           npm run lint &
@@ -58,36 +73,36 @@ jobs:
           npm run format:check &
           wait
 
-      # 6. 単体テストを実行する（カバレッジなしで高速化）
+      # 8. 単体テストを実行する（カバレッジなしで高速化）
       - name: Run unit tests
         run: npm run test:unit
 
-      # 7. カバレッジ付きテスト（mainブランチのみ）
+      # 9. カバレッジ付きテスト（mainブランチのみ）
       - name: Run tests with coverage
         if: github.ref == 'refs/heads/main'
         run: npm run test:coverage
 
-      # 8. カバレッジレポートをPRにコメントする（mainブランチのみ）
+      # 10. カバレッジレポートをPRにコメントする（mainブランチのみ）
       - name: Coverage Report
         if: github.event_name == 'pull_request' && github.ref == 'refs/heads/main'
         uses: davelosert/vitest-coverage-report-action@v2
 
-      # 9. Playwrightブラウザのインストール（キャッシュがない場合のみ）
+      # 11. Playwrightブラウザのインストール（キャッシュがない場合のみ）
       - name: Install Playwright browsers
         if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: npx playwright install chromium --with-deps
 
-      # 10. プロジェクトのビルド
+      # 12. プロジェクトのビルド
       - name: Build project
         run: npm run build
 
-      # 11. E2Eテストを実行する
+      # 13. E2Eテストを実行する
       - name: Run E2E tests
         run: playwright test
         env:
           CI: true
 
-      # 12. Cloudflare Workers へのデプロイ（mainブランチのみ）
+      # 14. Cloudflare Workers へのデプロイ（mainブランチのみ）
       - name: Deploy to Cloudflare Workers
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: npm run deploy
