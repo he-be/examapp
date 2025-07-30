@@ -16,9 +16,14 @@ export default defineConfig(
       hookTimeout: 30000, // 30 seconds timeout for hooks
       coverage: {
         provider: 'v8',
-        reporter: ['text', 'json', 'json-summary', 'html'],
+        reporter: process.env.CI
+          ? ['text', 'json-summary']
+          : ['text', 'json', 'json-summary', 'html'],
         reportsDirectory: './coverage',
         exclude: ['node_modules/', 'dist/', 'e2e/', '**/*.d.ts', '**/*.config.*', 'coverage/**'],
+        thresholds: {
+          autoUpdate: true,
+        },
       },
     },
     build: {
