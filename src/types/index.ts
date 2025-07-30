@@ -77,6 +77,7 @@ export interface DROPQuestion extends BaseQuestion {
   type: 'text';
   passage: string;
   questionType: 'numeric' | 'span' | 'date';
+  possibleAnswers?: string[];
 }
 
 /**
