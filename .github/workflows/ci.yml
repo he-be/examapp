@@ -15,7 +15,7 @@ jobs:
   # 品質チェック、テスト、ビルドを実行するジョブ
   build-and-test:
     # ジョブを実行する仮想環境の種類（最新のUbuntu）
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     # ジョブ内のステップ（実行されるコマンド）
     steps:
@@ -75,7 +75,7 @@ jobs:
   # Cloudflare Workers へのデプロイ（mainブランチのみ）
   deploy:
     name: Deploy to Cloudflare Workers
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: build-and-test
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     

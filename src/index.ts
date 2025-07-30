@@ -1,106 +1,68 @@
-// Cloudflare Workers サンプルアプリケーション
+// src/index.ts
 
-export const sampleData = ['Hello', 'World', 'AI', 'Driven', 'Development'];
-
-export function getRandomItem(): string {
-  const randomIndex = Math.floor(Math.random() * sampleData.length);
-  return sampleData[randomIndex];
-}
-
-function generateHTML(message: string): string {
-  return `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${message}</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-        .container {
-            text-align: center;
-            background: white;
-            padding: 50px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            color: #333;
-            margin-bottom: 30px;
-        }
-        .message {
-            font-size: 24px;
-            font-weight: bold;
-            color: #007acc;
-            margin: 20px 0;
-            padding: 20px;
-            border: 2px solid #007acc;
-            border-radius: 10px;
-        }
-        .reload-button {
-            background-color: #007acc;
-            color: white;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 18px;
-            margin-top: 20px;
-            display: inline-block;
-        }
-        .reload-button:hover {
-            background-color: #005999;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>AI-Driven Development Sample</h1>
-        <div class="message">${message}</div>
-        <a href="/" class="reload-button">Generate New</a>
-    </div>
-</body>
-</html>
-  `;
+// 環境変数などの型定義（必要に応じて）
+export interface Env {
+  // 例：フィードバック送信用のAPIキーなど
+  // SENDGRID_API_KEY?: string;
+  [key: string]: unknown;
 }
 
 export default {
-  async fetch(request: Request): Promise<Response> {
+  /**
+   * Workerのエントリーポイント。すべてのリクエストがこの関数を通過する。
+   * ただし、リクエストが[assets]で設定された静的ファイルに一致する場合、
+   * Cloudflareランタイムがこのfetchハンドラを呼び出す前にレスポンスを返す。
+   * したがって、このコードは主にAPIエンドポイントのような動的リクエストを処理するために存在する。
+   */
+  async fetch(request: Request, _env: Env, _ctx: unknown): Promise<Response> {
     const url = new URL(request.url);
 
-    // ルートパスの処理
-    if (url.pathname === '/') {
-      const message = getRandomItem();
-      const html = generateHTML(message);
+    // APIルート: /api/feedback へのPOSTリクエストのみを処理
+    if (url.pathname === '/api/feedback' && request.method === 'POST') {
+      try {
+        // リクエストボディをJSONとしてパース
+        const feedbackData: Record<string, unknown> = await request.json();
 
-      return new Response(html, {
-        headers: {
-          'Content-Type': 'text/html; charset=utf-8',
-          'Cache-Control': 'no-cache',
-        },
-      });
+        // ここで外部サービス（例: SendGrid, Slack API）にフィードバックを送信するロジックを実装
+        // await sendFeedbackToExternalService(feedbackData, env);
+
+        console.log('Feedback received:', feedbackData);
+
+        // 成功レスポンスを返す
+        const responseBody = JSON.stringify({ success: true, message: 'Feedback received.' });
+        return new Response(responseBody, {
+          status: 200,
+          headers: { 'Content-Type': 'application/json' },
+        });
+      } catch (error) {
+        // JSONのパース失敗など、リクエストに問題があった場合
+        if (error instanceof SyntaxError) {
+          return new Response('Invalid JSON in request body.', { status: 400 });
+        }
+        // その他のサーバーサイドエラー
+        console.error('Error processing feedback:', error);
+        return new Response('An internal error occurred.', { status: 500 });
+      }
     }
 
-    // APIエンドポイント（JSON）
-    if (url.pathname === '/api/random') {
-      const message = getRandomItem();
-
-      return new Response(JSON.stringify({ message }), {
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-        },
-      });
+    // ヘルスチェックエンドポイント
+    if (url.pathname === '/api/health' && request.method === 'GET') {
+      return new Response(
+        JSON.stringify({
+          status: 'ok',
+          timestamp: Date.now(),
+        }),
+        {
+          status: 200,
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
     }
 
-    // 404 Not Found
+    // このハンドラに到達したということは、リクエストが静的アセットにも
+    // 上記のAPIルートにも一致しなかったことを意味する。
+    // SPA設定が有効なため、通常はナビゲーションリクエストはここに到達しないが、
+    // 不明なAPIエンドポイントへのアクセスなどのためにフォールバックを用意する。
     return new Response('Not Found', { status: 404 });
   },
 };

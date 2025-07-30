@@ -1,44 +1,42 @@
-import { defineConfig } from 'vite'
-import { defineConfig as defineVitestConfig } from 'vitest/config'
+import { defineConfig } from 'vite';
+import { defineConfig as defineVitestConfig } from 'vitest/config';
+import react from '@vitejs/plugin-react';
 
 // Merge Vite and Vitest configs
 export default defineConfig(
   defineVitestConfig({
+    plugins: [react()],
     test: {
       globals: true,
-      environment: 'node',
+      environment: 'jsdom',
       include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
       exclude: ['e2e/**', 'node_modules/**', 'dist/**'],
       coverage: {
         provider: 'v8',
         reporter: ['text', 'json', 'json-summary', 'html'],
         reportsDirectory: './coverage',
-        exclude: [
-          'node_modules/',
-          'dist/',
-          'e2e/',
-          '**/*.d.ts',
-          '**/*.config.*',
-          'coverage/**'
-        ]
-      }
+        exclude: ['node_modules/', 'dist/', 'e2e/', '**/*.d.ts', '**/*.config.*', 'coverage/**'],
+      },
     },
     build: {
       target: 'es2022',
       outDir: 'dist',
-      emptyOutDir: true,
+      emptyOutDir: false, // Workerファイルを保護するためfalseに変更
       minify: true,
       rollupOptions: {
-        input: './src/index.ts',
+        input: './index.html', // HTMLエントリーポイント
         output: {
-          format: 'es'
-        }
-      }
+          format: 'es',
+          entryFileNames: 'assets/[name]-[hash].js',
+          chunkFileNames: 'assets/[name]-[hash].js',
+          assetFileNames: 'assets/[name]-[hash].[ext]',
+        },
+      },
     },
     resolve: {
       alias: {
-        '@': '/src'
-      }
-    }
+        '@': '/src',
+      },
+    },
   })
-)
+);
