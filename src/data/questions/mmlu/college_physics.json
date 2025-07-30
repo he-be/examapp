@@ -1,0 +1,259 @@
+{
+  "metadata": {
+    "category": "college_physics",
+    "name": "College Physics",
+    "description": "University level physics concepts and problem solving",
+    "domain": "STEM",
+    "difficulty": "medium-hard",
+    "source": "MMLU validation set",
+    "pool_size": 60,
+    "last_updated": "2024-01-30"
+  },
+  "questions": [
+    {
+      "id": "mmlu-phys-001",
+      "type": "multiple-choice",
+      "question": "A block of mass m slides down a frictionless incline of angle θ. What is the acceleration of the block?",
+      "choices": ["g", "g sin θ", "g cos θ", "g tan θ"],
+      "correctAnswer": 1,
+      "explanation": "On a frictionless incline, the component of gravity along the slope is mg sin θ, giving acceleration a = g sin θ.",
+      "category": "college_physics",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phys-002",
+      "type": "multiple-choice",
+      "question": "The electric field at a distance r from a point charge Q is:",
+      "choices": ["kQ/r", "kQ/r²", "kQ/r³", "kQr"],
+      "correctAnswer": 1,
+      "explanation": "The electric field from a point charge follows Coulomb's law: E = kQ/r², where k is Coulomb's constant.",
+      "category": "college_physics",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phys-003",
+      "type": "multiple-choice",
+      "question": "In a double-slit experiment, the fringe width increases if:",
+      "choices": [
+        "wavelength decreases",
+        "slit separation increases",
+        "distance to screen increases",
+        "intensity increases"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Fringe width β = λD/d, where λ is wavelength, D is screen distance, and d is slit separation. Increasing D increases β.",
+      "category": "college_physics",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phys-004",
+      "type": "multiple-choice",
+      "question": "The period of a simple pendulum depends on:",
+      "choices": [
+        "mass and length",
+        "length and gravity",
+        "mass and gravity",
+        "amplitude and length"
+      ],
+      "correctAnswer": 1,
+      "explanation": "For small oscillations, the period T = 2π√(L/g) depends only on length L and gravitational acceleration g.",
+      "category": "college_physics",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phys-005",
+      "type": "multiple-choice",
+      "question": "According to the Stefan-Boltzmann law, the power radiated by a black body is proportional to:",
+      "choices": ["T", "T²", "T³", "T⁴"],
+      "correctAnswer": 3,
+      "explanation": "The Stefan-Boltzmann law states that P = σAT⁴, where σ is the Stefan-Boltzmann constant.",
+      "category": "college_physics",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phys-006",
+      "type": "multiple-choice",
+      "question": "A capacitor C is charged to voltage V. The energy stored is:",
+      "choices": ["CV²/2", "CV²", "CV/2", "C²V"],
+      "correctAnswer": 0,
+      "explanation": "The energy stored in a capacitor is U = ½CV², derived from integrating the work done during charging.",
+      "category": "college_physics",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phys-007",
+      "type": "multiple-choice",
+      "question": "In the photoelectric effect, the maximum kinetic energy of emitted electrons depends on:",
+      "choices": [
+        "intensity of light only",
+        "frequency of light only",
+        "both intensity and frequency",
+        "neither intensity nor frequency"
+      ],
+      "correctAnswer": 1,
+      "explanation": "KEmax = hf - φ, where f is frequency and φ is work function. Intensity affects number of electrons, not their energy.",
+      "category": "college_physics",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phys-008",
+      "type": "multiple-choice",
+      "question": "The magnetic field inside a long solenoid with n turns per unit length carrying current I is:",
+      "choices": ["μ₀nI", "μ₀I/n", "μ₀n/I", "nI/μ₀"],
+      "correctAnswer": 0,
+      "explanation": "Inside a long solenoid, the magnetic field is uniform and given by B = μ₀nI.",
+      "category": "college_physics",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phys-009",
+      "type": "multiple-choice",
+      "question": "The de Broglie wavelength of a particle with momentum p is:",
+      "choices": ["hp", "h/p", "p/h", "h²/p"],
+      "correctAnswer": 1,
+      "explanation": "de Broglie's hypothesis states that λ = h/p, where h is Planck's constant and p is momentum.",
+      "category": "college_physics",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phys-010",
+      "type": "multiple-choice",
+      "question": "In an ideal gas, the average kinetic energy per molecule is proportional to:",
+      "choices": ["pressure", "volume", "absolute temperature", "number of moles"],
+      "correctAnswer": 2,
+      "explanation": "The kinetic theory gives <KE> = (3/2)kT, where k is Boltzmann's constant and T is absolute temperature.",
+      "category": "college_physics",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phys-011",
+      "type": "multiple-choice",
+      "question": "A wire carrying current I in a magnetic field B experiences maximum force when:",
+      "choices": [
+        "wire is parallel to B",
+        "wire is perpendicular to B",
+        "wire makes 45° with B",
+        "wire makes 30° with B"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The force F = ILB sin θ is maximum when sin θ = 1, i.e., when the wire is perpendicular to the magnetic field.",
+      "category": "college_physics",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phys-012",
+      "type": "multiple-choice",
+      "question": "The efficiency of a Carnot engine operating between temperatures Th and Tc is:",
+      "choices": ["1 - Tc/Th", "1 - Th/Tc", "(Th - Tc)/Tc", "Tc/Th"],
+      "correctAnswer": 0,
+      "explanation": "The Carnot efficiency η = 1 - Tc/Th, where Th is the hot reservoir and Tc is the cold reservoir temperature.",
+      "category": "college_physics",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phys-013",
+      "type": "multiple-choice",
+      "question": "In special relativity, the factor γ = 1/√(1 - v²/c²) approaches infinity when:",
+      "choices": ["v → 0", "v → c/2", "v → c", "v → 2c"],
+      "correctAnswer": 2,
+      "explanation": "As velocity v approaches the speed of light c, the denominator approaches zero, making γ approach infinity.",
+      "category": "college_physics",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phys-014",
+      "type": "multiple-choice",
+      "question": "The uncertainty principle states that ΔxΔp ≥:",
+      "choices": ["h/4π", "h/2π", "h", "2πh"],
+      "correctAnswer": 0,
+      "explanation": "Heisenberg's uncertainty principle: ΔxΔp ≥ ℏ/2 = h/4π, where ℏ is the reduced Planck constant.",
+      "category": "college_physics",
+      "difficulty": "hard",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phys-015",
+      "type": "multiple-choice",
+      "question": "A charged particle moving in a uniform magnetic field follows a:",
+      "choices": ["straight line", "parabola", "circle", "hyperbola"],
+      "correctAnswer": 2,
+      "explanation": "The Lorentz force provides centripetal acceleration, causing the particle to move in a circular path.",
+      "category": "college_physics",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phys-016",
+      "type": "multiple-choice",
+      "question": "The speed of electromagnetic waves in vacuum is:",
+      "choices": ["√(ε₀μ₀)", "1/√(ε₀μ₀)", "ε₀μ₀", "1/(ε₀μ₀)"],
+      "correctAnswer": 1,
+      "explanation": "Maxwell's equations give c = 1/√(ε₀μ₀), where ε₀ and μ₀ are the permittivity and permeability of free space.",
+      "category": "college_physics",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phys-017",
+      "type": "multiple-choice",
+      "question": "In quantum mechanics, the ground state energy of a particle in an infinite square well of width L is:",
+      "choices": ["h²/(8mL²)", "h²/(2mL²)", "h²/(4mL²)", "h²/(mL²)"],
+      "correctAnswer": 0,
+      "explanation": "For n=1, the ground state energy is E₁ = n²h²/(8mL²) = h²/(8mL²).",
+      "category": "college_physics",
+      "difficulty": "hard",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phys-018",
+      "type": "multiple-choice",
+      "question": "The moment of inertia of a solid sphere of mass M and radius R about its center is:",
+      "choices": ["MR²", "(2/5)MR²", "(1/2)MR²", "(2/3)MR²"],
+      "correctAnswer": 1,
+      "explanation": "For a uniform solid sphere rotating about its center, I = (2/5)MR².",
+      "category": "college_physics",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phys-019",
+      "type": "multiple-choice",
+      "question": "Brewster's angle is the angle of incidence at which:",
+      "choices": [
+        "light is totally reflected",
+        "light is totally transmitted",
+        "reflected light is completely polarized",
+        "refracted light is completely polarized"
+      ],
+      "correctAnswer": 2,
+      "explanation": "At Brewster's angle, reflected light is completely polarized perpendicular to the plane of incidence.",
+      "category": "college_physics",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phys-020",
+      "type": "multiple-choice",
+      "question": "The escape velocity from Earth's surface is approximately:",
+      "choices": ["7.9 km/s", "11.2 km/s", "15.0 km/s", "25.0 km/s"],
+      "correctAnswer": 1,
+      "explanation": "Escape velocity v = √(2GM/R) ≈ 11.2 km/s for Earth, where G is gravitational constant, M is Earth's mass, R is radius.",
+      "category": "college_physics",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    }
+  ]
+}

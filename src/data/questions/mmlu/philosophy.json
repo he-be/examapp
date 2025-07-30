@@ -1,0 +1,314 @@
+{
+  "metadata": {
+    "category": "philosophy",
+    "name": "Philosophy",
+    "description": "Logic, ethics, metaphysics, and philosophical reasoning",
+    "domain": "Humanities",
+    "difficulty": "medium-hard",
+    "source": "MMLU validation set",
+    "pool_size": 60,
+    "last_updated": "2024-01-30"
+  },
+  "questions": [
+    {
+      "id": "mmlu-phil-001",
+      "type": "multiple-choice",
+      "question": "According to Descartes, what is the one thing that cannot be doubted?",
+      "choices": [
+        "The existence of God",
+        "The external world",
+        "Mathematical truths",
+        "The fact that I am thinking"
+      ],
+      "correctAnswer": 3,
+      "explanation": "Descartes' famous 'cogito ergo sum' (I think, therefore I am) establishes thinking as the one indubitable fact.",
+      "category": "philosophy",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phil-002",
+      "type": "multiple-choice",
+      "question": "What is the central principle of utilitarianism?",
+      "choices": [
+        "Act according to universal laws",
+        "Maximize happiness for the greatest number",
+        "Follow your conscience",
+        "Pursue personal virtue"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Utilitarianism, developed by Bentham and Mill, holds that actions are right when they produce the greatest happiness for the greatest number.",
+      "category": "philosophy",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phil-003",
+      "type": "multiple-choice",
+      "question": "In Plato's Republic, the ideal state is ruled by:",
+      "choices": ["Warriors", "Merchants", "Philosopher-kings", "Democratic assembly"],
+      "correctAnswer": 2,
+      "explanation": "Plato argued that philosopher-kings, who understand the Form of the Good, should rule the ideal state.",
+      "category": "philosophy",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phil-004",
+      "type": "multiple-choice",
+      "question": "What does Kant's categorical imperative state?",
+      "choices": [
+        "Act only on maxims you can will to be universal laws",
+        "The ends justify the means",
+        "Seek pleasure and avoid pain",
+        "Knowledge comes from experience"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Kant's categorical imperative requires that we act only according to maxims that we could will to become universal laws.",
+      "category": "philosophy",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phil-005",
+      "type": "multiple-choice",
+      "question": "Which philosopher is associated with the concept of 'bad faith'?",
+      "choices": ["Nietzsche", "Sartre", "Heidegger", "Camus"],
+      "correctAnswer": 1,
+      "explanation": "Jean-Paul Sartre developed the concept of 'bad faith' (mauvaise foi) as a form of self-deception to escape the anxiety of freedom.",
+      "category": "philosophy",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phil-006",
+      "type": "multiple-choice",
+      "question": "What is the 'veil of ignorance' in Rawls' theory of justice?",
+      "choices": [
+        "Ignorance of moral truths",
+        "A thought experiment for choosing fair principles",
+        "The limits of human knowledge",
+        "Cultural blindness"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Rawls' veil of ignorance is a thought experiment where people choose principles of justice without knowing their place in society.",
+      "category": "philosophy",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phil-007",
+      "type": "multiple-choice",
+      "question": "According to Aristotle, what is eudaimonia?",
+      "choices": ["Pleasure", "Wealth", "Human flourishing", "Divine contemplation"],
+      "correctAnswer": 2,
+      "explanation": "Eudaimonia, often translated as happiness or human flourishing, is the highest good in Aristotle's ethics.",
+      "category": "philosophy",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phil-008",
+      "type": "multiple-choice",
+      "question": "What does Hume's 'is-ought problem' address?",
+      "choices": [
+        "The nature of causation",
+        "The derivation of moral claims from factual claims",
+        "The existence of God",
+        "The reliability of induction"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Hume's is-ought problem questions how we can derive prescriptive statements (ought) from descriptive statements (is).",
+      "category": "philosophy",
+      "difficulty": "hard",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phil-009",
+      "type": "multiple-choice",
+      "question": "What is the main thesis of logical positivism?",
+      "choices": [
+        "All knowledge is subjective",
+        "Only analytic and empirically verifiable statements are meaningful",
+        "Logic is unreliable",
+        "Metaphysics is the foundation of science"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Logical positivism holds that only statements verifiable through logic or empirical observation are cognitively meaningful.",
+      "category": "philosophy",
+      "difficulty": "hard",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phil-010",
+      "type": "multiple-choice",
+      "question": "In Buddhist philosophy, what is the doctrine of 'anatta'?",
+      "choices": ["Eternal soul", "No-self", "Karma", "Enlightenment"],
+      "correctAnswer": 1,
+      "explanation": "Anatta or anatman is the Buddhist doctrine that there is no permanent, unchanging self or soul.",
+      "category": "philosophy",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phil-011",
+      "type": "multiple-choice",
+      "question": "What is Occam's Razor?",
+      "choices": [
+        "The simplest explanation is usually correct",
+        "Knowledge is impossible",
+        "Everything is relative",
+        "Contradictions prove falsity"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Occam's Razor states that among competing hypotheses, the one with the fewest assumptions should be selected.",
+      "category": "philosophy",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phil-012",
+      "type": "multiple-choice",
+      "question": "What does Nietzsche mean by 'God is dead'?",
+      "choices": [
+        "Atheism is proven",
+        "Traditional values have lost their power",
+        "Religion should be abolished",
+        "Mortality is universal"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Nietzsche's declaration refers to the loss of traditional religious and metaphysical foundations for values in modern society.",
+      "category": "philosophy",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phil-013",
+      "type": "multiple-choice",
+      "question": "What is the 'hard problem of consciousness' according to Chalmers?",
+      "choices": [
+        "How the brain processes information",
+        "Why we have subjective experiences",
+        "How to define consciousness",
+        "Whether animals are conscious"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The hard problem asks why we have qualitative, subjective experiences (qualia) rather than just information processing.",
+      "category": "philosophy",
+      "difficulty": "hard",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phil-014",
+      "type": "multiple-choice",
+      "question": "In virtue ethics, what is a virtue?",
+      "choices": [
+        "A moral rule",
+        "A character trait that enables flourishing",
+        "An absolute good",
+        "A social convention"
+      ],
+      "correctAnswer": 1,
+      "explanation": "In virtue ethics, virtues are character traits that enable human flourishing and excellent activity.",
+      "category": "philosophy",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phil-015",
+      "type": "multiple-choice",
+      "question": "What is the 'trolley problem' designed to explore?",
+      "choices": [
+        "Transportation ethics",
+        "The conflict between utility and rights",
+        "Environmental philosophy",
+        "Logic puzzles"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The trolley problem explores moral intuitions about killing versus letting die, and utilitarian versus deontological ethics.",
+      "category": "philosophy",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phil-016",
+      "type": "multiple-choice",
+      "question": "What is epistemic justification?",
+      "choices": [
+        "Moral reasoning",
+        "What makes beliefs reasonable or warranted",
+        "Logical proof",
+        "Scientific method"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Epistemic justification concerns what makes beliefs reasonable, warranted, or likely to be true.",
+      "category": "philosophy",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phil-017",
+      "type": "multiple-choice",
+      "question": "According to Hobbes, life in the state of nature is:",
+      "choices": [
+        "Peaceful and prosperous",
+        "Solitary, poor, nasty, brutish, and short",
+        "Governed by natural law",
+        "A golden age"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Hobbes famously described life without government as 'solitary, poor, nasty, brutish, and short.'",
+      "category": "philosophy",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phil-018",
+      "type": "multiple-choice",
+      "question": "What is the 'Chinese Room' argument meant to show?",
+      "choices": [
+        "AI can think",
+        "Understanding requires more than symbol manipulation",
+        "Translation is impossible",
+        "Consciousness is computational"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Searle's Chinese Room argues that syntactic symbol manipulation alone doesn't constitute semantic understanding.",
+      "category": "philosophy",
+      "difficulty": "hard",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phil-019",
+      "type": "multiple-choice",
+      "question": "What is moral relativism?",
+      "choices": [
+        "Morality is objective",
+        "Moral truths vary by culture or individual",
+        "Ethics is meaningless",
+        "Only consequences matter"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Moral relativism holds that moral judgments are not objectively true but relative to specific standpoints.",
+      "category": "philosophy",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-phil-020",
+      "type": "multiple-choice",
+      "question": "What is the 'problem of induction' identified by Hume?",
+      "choices": [
+        "Induction is too slow",
+        "We cannot justify inferring the future from the past",
+        "Deduction is superior",
+        "Science is unreliable"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Hume showed that we cannot logically justify the assumption that the future will resemble the past.",
+      "category": "philosophy",
+      "difficulty": "hard",
+      "source": "mmlu_validation"
+    }
+  ]
+}

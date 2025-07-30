@@ -1,0 +1,239 @@
+{
+  "metadata": {
+    "category": "world_religions",
+    "name": "World Religions",
+    "description": "Major world religions, beliefs, practices, and cultural contexts",
+    "domain": "Humanities",
+    "difficulty": "medium",
+    "source": "MMLU validation set",
+    "pool_size": 60,
+    "last_updated": "2024-01-30"
+  },
+  "questions": [
+    {
+      "id": "mmlu-rel-001",
+      "type": "multiple-choice",
+      "question": "The Four Noble Truths are central to which religion?",
+      "choices": ["Hinduism", "Buddhism", "Jainism", "Sikhism"],
+      "correctAnswer": 1,
+      "explanation": "The Four Noble Truths about suffering and its cessation are fundamental teachings of Buddhism.",
+      "category": "world_religions",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-rel-002",
+      "type": "multiple-choice",
+      "question": "Which text is considered the most sacred in Hinduism?",
+      "choices": ["The Vedas", "The Torah", "The Quran", "The Bible"],
+      "correctAnswer": 0,
+      "explanation": "The Vedas are the oldest and most authoritative scriptures in Hinduism.",
+      "category": "world_religions",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-rel-003",
+      "type": "multiple-choice",
+      "question": "The Five Pillars are fundamental practices in:",
+      "choices": ["Christianity", "Islam", "Judaism", "Buddhism"],
+      "correctAnswer": 1,
+      "explanation": "The Five Pillars (Shahada, Salat, Zakat, Sawm, Hajj) are the fundamental acts of worship in Islam.",
+      "category": "world_religions",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-rel-004",
+      "type": "multiple-choice",
+      "question": "What does 'Torah' literally mean in Hebrew?",
+      "choices": ["Law", "Teaching", "Covenant", "Prophet"],
+      "correctAnswer": 1,
+      "explanation": "Torah literally means 'teaching' or 'instruction' in Hebrew.",
+      "category": "world_religions",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-rel-005",
+      "type": "multiple-choice",
+      "question": "The concept of 'ahimsa' (non-violence) is particularly emphasized in:",
+      "choices": ["Shinto", "Jainism", "Confucianism", "Zoroastrianism"],
+      "correctAnswer": 1,
+      "explanation": "Ahimsa or non-violence is the fundamental principle of Jainism, though also important in Hinduism and Buddhism.",
+      "category": "world_religions",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-rel-006",
+      "type": "multiple-choice",
+      "question": "The Eightfold Path in Buddhism leads to:",
+      "choices": ["Wealth", "Power", "Nirvana", "Reincarnation"],
+      "correctAnswer": 2,
+      "explanation": "The Noble Eightfold Path is the Buddhist path to liberation from suffering, leading to Nirvana.",
+      "category": "world_religions",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-rel-007",
+      "type": "multiple-choice",
+      "question": "Which religion follows the teachings of the Guru Granth Sahib?",
+      "choices": ["Hinduism", "Buddhism", "Sikhism", "Jainism"],
+      "correctAnswer": 2,
+      "explanation": "The Guru Granth Sahib is the central religious scripture of Sikhism.",
+      "category": "world_religions",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-rel-008",
+      "type": "multiple-choice",
+      "question": "The term 'Messiah' originates from which religious tradition?",
+      "choices": ["Christianity", "Islam", "Judaism", "Zoroastrianism"],
+      "correctAnswer": 2,
+      "explanation": "The concept of Messiah (Mashiach) originates in Judaism, referring to an anointed king who will restore Israel.",
+      "category": "world_religions",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-rel-009",
+      "type": "multiple-choice",
+      "question": "What is the Shinto term for spirits or divine forces?",
+      "choices": ["Karma", "Kami", "Dharma", "Tao"],
+      "correctAnswer": 1,
+      "explanation": "Kami are the spirits or phenomena worshipped in Shinto, including forces of nature and deceased persons.",
+      "category": "world_religions",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-rel-010",
+      "type": "multiple-choice",
+      "question": "The concept of 'Trinity' is found in:",
+      "choices": ["Judaism", "Christianity", "Islam", "All of the above"],
+      "correctAnswer": 1,
+      "explanation": "The Trinity (Father, Son, Holy Spirit) is a distinctly Christian doctrine not found in Judaism or Islam.",
+      "category": "world_religions",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-rel-011",
+      "type": "multiple-choice",
+      "question": "What does 'Buddha' mean?",
+      "choices": ["The Enlightened One", "The Holy One", "The Chosen One", "The Perfect One"],
+      "correctAnswer": 0,
+      "explanation": "Buddha means 'The Awakened One' or 'The Enlightened One' in Sanskrit.",
+      "category": "world_religions",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-rel-012",
+      "type": "multiple-choice",
+      "question": "The Hajj pilgrimage is to which city?",
+      "choices": ["Jerusalem", "Medina", "Mecca", "Damascus"],
+      "correctAnswer": 2,
+      "explanation": "The Hajj is the Islamic pilgrimage to Mecca, required of all able Muslims at least once in their lifetime.",
+      "category": "world_religions",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-rel-013",
+      "type": "multiple-choice",
+      "question": "Which religion emphasizes the balance of Yin and Yang?",
+      "choices": ["Confucianism", "Taoism", "Buddhism", "Shintoism"],
+      "correctAnswer": 1,
+      "explanation": "Taoism emphasizes the complementary forces of Yin and Yang as fundamental to understanding the universe.",
+      "category": "world_religions",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-rel-014",
+      "type": "multiple-choice",
+      "question": "The caste system is traditionally associated with:",
+      "choices": ["Buddhism", "Hinduism", "Jainism", "Sikhism"],
+      "correctAnswer": 1,
+      "explanation": "The caste system is a traditional social hierarchy in Hindu society, though criticized by other Indian religions.",
+      "category": "world_religions",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-rel-015",
+      "type": "multiple-choice",
+      "question": "What is the Jewish Sabbath called?",
+      "choices": ["Sunday", "Shabbat", "Passover", "Yom Kippur"],
+      "correctAnswer": 1,
+      "explanation": "Shabbat (Sabbath) is the Jewish day of rest, observed from Friday evening to Saturday evening.",
+      "category": "world_religions",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-rel-016",
+      "type": "multiple-choice",
+      "question": "The concept of 'karma' originated in:",
+      "choices": [
+        "Chinese religions",
+        "Indian religions",
+        "Middle Eastern religions",
+        "African religions"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Karma as a concept of cause and effect originated in ancient Indian religions, particularly Hinduism.",
+      "category": "world_religions",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-rel-017",
+      "type": "multiple-choice",
+      "question": "Which branch of Buddhism is prominent in Tibet?",
+      "choices": ["Theravada", "Mahayana", "Vajrayana", "Zen"],
+      "correctAnswer": 2,
+      "explanation": "Vajrayana (Tibetan Buddhism) is the dominant form of Buddhism in Tibet, incorporating tantric practices.",
+      "category": "world_religions",
+      "difficulty": "hard",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-rel-018",
+      "type": "multiple-choice",
+      "question": "The Apostle's Creed is recited in:",
+      "choices": ["Judaism", "Christianity", "Islam", "Buddhism"],
+      "correctAnswer": 1,
+      "explanation": "The Apostle's Creed is a Christian statement of faith used in various denominations.",
+      "category": "world_religions",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-rel-019",
+      "type": "multiple-choice",
+      "question": "What does 'Jihad' primarily mean in Islamic theology?",
+      "choices": ["Holy war", "Struggle or striving", "Pilgrimage", "Prayer"],
+      "correctAnswer": 1,
+      "explanation": "Jihad primarily means 'struggle' or 'striving' in the way of God, with multiple spiritual and physical dimensions.",
+      "category": "world_religions",
+      "difficulty": "hard",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-rel-020",
+      "type": "multiple-choice",
+      "question": "The Golden Temple is the holiest site for:",
+      "choices": ["Hindus", "Buddhists", "Sikhs", "Jains"],
+      "correctAnswer": 2,
+      "explanation": "The Golden Temple (Harmandir Sahib) in Amritsar is the holiest gurdwara and spiritual center of Sikhism.",
+      "category": "world_religions",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    }
+  ]
+}

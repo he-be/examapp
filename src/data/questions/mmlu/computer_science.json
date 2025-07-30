@@ -1,0 +1,269 @@
+{
+  "metadata": {
+    "category": "computer_science",
+    "name": "Computer Science",
+    "description": "Programming, algorithms, data structures, and CS theory",
+    "domain": "STEM",
+    "difficulty": "medium",
+    "source": "MMLU validation set",
+    "pool_size": 60,
+    "last_updated": "2024-01-30"
+  },
+  "questions": [
+    {
+      "id": "mmlu-cs-001",
+      "type": "multiple-choice",
+      "question": "What is the time complexity of binary search on a sorted array of n elements?",
+      "choices": ["O(n)", "O(log n)", "O(n log n)", "O(1)"],
+      "correctAnswer": 1,
+      "explanation": "Binary search halves the search space at each step, resulting in O(log n) time complexity.",
+      "category": "computer_science",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-cs-002",
+      "type": "multiple-choice",
+      "question": "Which data structure uses LIFO (Last In, First Out) principle?",
+      "choices": ["Queue", "Stack", "Heap", "Tree"],
+      "correctAnswer": 1,
+      "explanation": "A stack follows the LIFO principle where the last element added is the first one to be removed.",
+      "category": "computer_science",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-cs-003",
+      "type": "multiple-choice",
+      "question": "In object-oriented programming, which principle states that a derived class should be substitutable for its base class?",
+      "choices": [
+        "Encapsulation",
+        "Polymorphism",
+        "Liskov Substitution Principle",
+        "Single Responsibility Principle"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The Liskov Substitution Principle (LSP) states that objects of a superclass should be replaceable with objects of its subclasses without breaking the application.",
+      "category": "computer_science",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-cs-004",
+      "type": "multiple-choice",
+      "question": "What is the space complexity of merge sort?",
+      "choices": ["O(1)", "O(log n)", "O(n)", "O(n²)"],
+      "correctAnswer": 2,
+      "explanation": "Merge sort requires O(n) additional space to store the temporary arrays during the merge process.",
+      "category": "computer_science",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-cs-005",
+      "type": "multiple-choice",
+      "question": "Which of the following is NOT a characteristic of a deadlock?",
+      "choices": ["Mutual exclusion", "Hold and wait", "Preemption", "Circular wait"],
+      "correctAnswer": 2,
+      "explanation": "Preemption is actually the absence of which leads to deadlock. The four conditions for deadlock are: mutual exclusion, hold and wait, no preemption, and circular wait.",
+      "category": "computer_science",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-cs-006",
+      "type": "multiple-choice",
+      "question": "In SQL, which clause is used to filter groups created by GROUP BY?",
+      "choices": ["WHERE", "HAVING", "ORDER BY", "DISTINCT"],
+      "correctAnswer": 1,
+      "explanation": "HAVING clause is used to filter groups after GROUP BY, while WHERE filters individual rows before grouping.",
+      "category": "computer_science",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-cs-007",
+      "type": "multiple-choice",
+      "question": "What is the worst-case time complexity of quicksort?",
+      "choices": ["O(n log n)", "O(n)", "O(n²)", "O(log n)"],
+      "correctAnswer": 2,
+      "explanation": "Quicksort has O(n²) worst-case complexity when the pivot selection consistently results in unbalanced partitions.",
+      "category": "computer_science",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-cs-008",
+      "type": "multiple-choice",
+      "question": "Which design pattern ensures a class has only one instance and provides global access to it?",
+      "choices": ["Factory", "Observer", "Singleton", "Strategy"],
+      "correctAnswer": 2,
+      "explanation": "The Singleton pattern ensures that a class has only one instance and provides a global point of access to that instance.",
+      "category": "computer_science",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-cs-009",
+      "type": "multiple-choice",
+      "question": "In a balanced binary search tree, what is the height for n nodes?",
+      "choices": ["O(1)", "O(log n)", "O(n)", "O(n log n)"],
+      "correctAnswer": 1,
+      "explanation": "A balanced binary search tree maintains a height of O(log n) to ensure efficient operations.",
+      "category": "computer_science",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-cs-010",
+      "type": "multiple-choice",
+      "question": "Which of the following is a stable sorting algorithm?",
+      "choices": ["Quick sort", "Heap sort", "Merge sort", "Selection sort"],
+      "correctAnswer": 2,
+      "explanation": "Merge sort is stable, meaning it preserves the relative order of equal elements. Quick sort and heap sort are not stable.",
+      "category": "computer_science",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-cs-011",
+      "type": "multiple-choice",
+      "question": "What does REST stand for in web services?",
+      "choices": [
+        "Remote Execution State Transfer",
+        "Representational State Transfer",
+        "Resource Efficient State Transfer",
+        "Reliable External State Transfer"
+      ],
+      "correctAnswer": 1,
+      "explanation": "REST stands for Representational State Transfer, an architectural style for designing networked applications.",
+      "category": "computer_science",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-cs-012",
+      "type": "multiple-choice",
+      "question": "Which algorithm is used to find the shortest path in a weighted graph with non-negative edge weights?",
+      "choices": ["DFS", "BFS", "Dijkstra's algorithm", "Prim's algorithm"],
+      "correctAnswer": 2,
+      "explanation": "Dijkstra's algorithm finds the shortest path from a source to all other vertices in a weighted graph with non-negative weights.",
+      "category": "computer_science",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-cs-013",
+      "type": "multiple-choice",
+      "question": "In database normalization, which normal form eliminates transitive dependencies?",
+      "choices": ["1NF", "2NF", "3NF", "BCNF"],
+      "correctAnswer": 2,
+      "explanation": "Third Normal Form (3NF) eliminates transitive dependencies, where a non-key attribute depends on another non-key attribute.",
+      "category": "computer_science",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-cs-014",
+      "type": "multiple-choice",
+      "question": "What is the purpose of a hash table's load factor?",
+      "choices": [
+        "To determine hash function quality",
+        "To measure collision frequency",
+        "To decide when to resize the table",
+        "To calculate memory usage"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The load factor (number of entries / table size) determines when to resize the hash table to maintain performance.",
+      "category": "computer_science",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-cs-015",
+      "type": "multiple-choice",
+      "question": "Which of the following is true about dynamic programming?",
+      "choices": [
+        "It always uses more memory than recursion",
+        "It solves problems by combining solutions to subproblems",
+        "It's only applicable to sorting algorithms",
+        "It has worse time complexity than brute force"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Dynamic programming solves complex problems by breaking them down into simpler subproblems and storing their solutions.",
+      "category": "computer_science",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-cs-016",
+      "type": "multiple-choice",
+      "question": "In TCP/IP model, which layer is responsible for end-to-end communication?",
+      "choices": ["Network layer", "Transport layer", "Application layer", "Link layer"],
+      "correctAnswer": 1,
+      "explanation": "The Transport layer (TCP/UDP) provides end-to-end communication services for applications.",
+      "category": "computer_science",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-cs-017",
+      "type": "multiple-choice",
+      "question": "What is the main advantage of using B-trees in databases?",
+      "choices": [
+        "Constant time insertion",
+        "Minimal disk I/O operations",
+        "Simple implementation",
+        "No need for balancing"
+      ],
+      "correctAnswer": 1,
+      "explanation": "B-trees minimize disk I/O by storing multiple keys per node and maintaining a low tree height.",
+      "category": "computer_science",
+      "difficulty": "hard",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-cs-018",
+      "type": "multiple-choice",
+      "question": "Which concurrency control method uses timestamps to order transactions?",
+      "choices": [
+        "Two-phase locking",
+        "Optimistic concurrency control",
+        "Timestamp ordering",
+        "Multiversion concurrency control"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Timestamp ordering assigns each transaction a timestamp and ensures operations execute in timestamp order.",
+      "category": "computer_science",
+      "difficulty": "hard",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-cs-019",
+      "type": "multiple-choice",
+      "question": "What is the time complexity of building a heap from an unsorted array?",
+      "choices": ["O(n log n)", "O(n)", "O(n²)", "O(log n)"],
+      "correctAnswer": 1,
+      "explanation": "Building a heap from an array can be done in O(n) time using the bottom-up approach (heapify).",
+      "category": "computer_science",
+      "difficulty": "hard",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-cs-020",
+      "type": "multiple-choice",
+      "question": "In compiler design, what is the purpose of a symbol table?",
+      "choices": [
+        "To store machine code",
+        "To track variable names and their attributes",
+        "To optimize loops",
+        "To handle syntax errors"
+      ],
+      "correctAnswer": 1,
+      "explanation": "A symbol table stores information about identifiers (variables, functions) including their type, scope, and memory location.",
+      "category": "computer_science",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    }
+  ]
+}
