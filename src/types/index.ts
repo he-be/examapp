@@ -89,6 +89,42 @@ export type Question =
   | HellaSwagQuestion
   | BigBenchQuestion
   | DROPQuestion;
+// =============================================================================
+// 問題データ管理用型定義
+// =============================================================================
+
+/**
+ * カテゴリ要約情報
+ */
+export interface CategorySummary {
+  id: string;
+  name: string;
+  domain: string;
+  difficulty: string;
+  questionCount: number;
+}
+
+/**
+ * セッション用問題データ
+ */
+/**
+ * セッション用問題データ
+ */
+export interface SessionQuestions {
+  categoryId: string;
+  categoryName: string;
+  questions: MMLUQuestion[];
+  totalInPool: number;
+}
+
+/**
+ * 問題プール検証結果
+ */
+export interface ValidationResult {
+  valid: boolean;
+  errors: string[];
+  warnings: string[];
+}
 
 // =============================================================================
 // ユーザー状態管理
