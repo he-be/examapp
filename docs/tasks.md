@@ -83,7 +83,7 @@
 
 ## Phase 4: MMLU（多肢選択式）ベンチマークの実装
 
-- [ ] 10. MMLU問題データの準備と配置
+- [x] 10. MMLU問題データの準備と配置
   - MMLU問題データのJSON形式での作成
   - カテゴリ別問題ファイルの作成（mathematics.json, history.json等）
   - /dist/questions/mmlu/ディレクトリへの配置

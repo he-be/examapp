@@ -11,3 +11,6 @@ export * from './testStateManager';
 // Answer validation and processing
 export * from './answerValidator';
 export * from './answerPersistence';
+
+// Question data management
+export * from './questionDataManager';

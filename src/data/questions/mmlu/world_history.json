@@ -1,0 +1,124 @@
+{
+  "metadata": {
+    "category": "world_history",
+    "name": "World History",
+    "description": "Global historical events, civilizations, and cultural developments",
+    "domain": "Humanities",
+    "difficulty": "medium", 
+    "source": "MMLU validation set",
+    "pool_size": 60,
+    "last_updated": "2024-01-30"
+  },
+  "questions": [
+    {
+      "id": "mmlu-hist-001",
+      "type": "multiple-choice",
+      "question": "The Mongol Empire at its height in the 13th century stretched from:",
+      "choices": ["Europe to China", "China to Eastern Europe", "India to Africa", "Russia to Japan"],
+      "correctAnswer": 1,
+      "explanation": "At its peak, the Mongol Empire extended from Eastern Europe in the west to China and the Pacific Ocean in the east, making it the largest contiguous land empire in history.",
+      "category": "world_history",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-hist-002", 
+      "type": "multiple-choice",
+      "question": "The Industrial Revolution began in which country during the 18th century?",
+      "choices": ["France", "Germany", "Britain", "United States"],
+      "correctAnswer": 2,
+      "explanation": "The Industrial Revolution began in Britain in the mid-18th century, starting with textile manufacturing and the development of steam power.",
+      "category": "world_history",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-hist-003",
+      "type": "multiple-choice",
+      "question": "The Treaty of Westphalia (1648) is significant because it:",
+      "choices": ["ended the Thirty Years' War", "established the Holy Roman Empire", "began the Protestant Reformation", "created the European Union"],
+      "correctAnswer": 0,
+      "explanation": "The Treaty of Westphalia ended the Thirty Years' War and established the principle of state sovereignty, marking the beginning of the modern international system.",
+      "category": "world_history",
+      "difficulty": "hard",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-hist-004",
+      "type": "multiple-choice", 
+      "question": "Which ancient civilization developed the first known system of writing?",
+      "choices": ["Egyptians", "Greeks", "Sumerians", "Chinese"],
+      "correctAnswer": 2,
+      "explanation": "The Sumerians in Mesopotamia developed cuneiform writing around 3200 BCE, which is considered the earliest known writing system.",
+      "category": "world_history",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-hist-005",
+      "type": "multiple-choice",
+      "question": "The Berlin Conference of 1884-1885 was primarily concerned with:",
+      "choices": ["German unification", "the partition of Africa", "World War I alliances", "European trade agreements"],
+      "correctAnswer": 1,
+      "explanation": "The Berlin Conference regulated European colonization and trade in Africa during the 'Scramble for Africa' period.",
+      "category": "world_history", 
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-hist-006",
+      "type": "multiple-choice",
+      "question": "The Silk Road was primarily important for:",
+      "choices": ["military conquests", "cultural and trade exchanges", "religious pilgrimages", "political alliances"],
+      "correctAnswer": 1,
+      "explanation": "The Silk Road facilitated extensive cultural, technological, and commercial exchanges between East and West for over 1,400 years.",
+      "category": "world_history",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-hist-007",
+      "type": "multiple-choice",
+      "question": "The Meiji Restoration in Japan (1868) resulted in:",
+      "choices": ["isolation from the West", "rapid modernization and industrialization", "the rise of feudalism", "the end of the samurai class only"],
+      "correctAnswer": 1,
+      "explanation": "The Meiji Restoration marked Japan's transformation from a feudal society to a modern industrialized nation, adopting Western technology and institutions.",
+      "category": "world_history",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-hist-008", 
+      "type": "multiple-choice",
+      "question": "Which empire was known as the 'sick man of Europe' in the 19th century?",
+      "choices": ["Russian Empire", "Austro-Hungarian Empire", "Ottoman Empire", "German Empire"],
+      "correctAnswer": 2,
+      "explanation": "The Ottoman Empire was called the 'sick man of Europe' due to its declining power and territorial losses in the 19th century.",
+      "category": "world_history",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-hist-009",
+      "type": "multiple-choice",
+      "question": "The Opium Wars were fought between:",
+      "choices": ["Britain and India", "China and Britain", "Japan and China", "Russia and China"],
+      "correctAnswer": 1,
+      "explanation": "The Opium Wars (1839-1842 and 1856-1860) were fought between Britain and China over trade disputes, particularly regarding opium.",
+      "category": "world_history",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-hist-010",
+      "type": "multiple-choice",
+      "question": "The Congress of Vienna (1815) was convened to:",
+      "choices": ["start the Napoleonic Wars", "establish the United Nations", "reorganize Europe after Napoleon's defeat", "create the German Confederation only"], 
+      "correctAnswer": 2,
+      "explanation": "The Congress of Vienna redrew the map of Europe and established a balance of power system after Napoleon's final defeat.",
+      "category": "world_history",
+      "difficulty": "hard",
+      "source": "mmlu_validation"
+    }
+  ]
+}

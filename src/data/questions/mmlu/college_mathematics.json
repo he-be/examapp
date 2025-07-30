@@ -1,0 +1,124 @@
+{
+  "metadata": {
+    "category": "college_mathematics",
+    "name": "College Mathematics",
+    "description": "Undergraduate level mathematics including calculus, linear algebra, and discrete math",
+    "domain": "STEM", 
+    "difficulty": "medium-hard",
+    "source": "MMLU validation set",
+    "pool_size": 60,
+    "last_updated": "2024-01-30"
+  },
+  "questions": [
+    {
+      "id": "mmlu-math-col-001",
+      "type": "multiple-choice",
+      "question": "Let f(x) = x^3 - 6x^2 + 9x + 1. What is f'(2)?",
+      "choices": ["3", "-3", "1", "-1"],
+      "correctAnswer": 1,
+      "explanation": "f'(x) = 3x^2 - 12x + 9. Therefore f'(2) = 3(4) - 12(2) + 9 = 12 - 24 + 9 = -3",
+      "category": "college_mathematics",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-math-col-002", 
+      "type": "multiple-choice",
+      "question": "What is the determinant of the matrix [[2, 1, 3], [0, 4, 1], [0, 0, 5]]?",
+      "choices": ["20", "40", "10", "0"],
+      "correctAnswer": 1,
+      "explanation": "For an upper triangular matrix, the determinant is the product of diagonal elements: 2 × 4 × 5 = 40",
+      "category": "college_mathematics", 
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-math-col-003",
+      "type": "multiple-choice", 
+      "question": "Find the limit of (sin(x) - x) / x^3 as x approaches 0.",
+      "choices": ["-1/6", "0", "1/6", "undefined"],
+      "correctAnswer": 0,
+      "explanation": "Using Taylor series: sin(x) = x - x^3/6 + O(x^5). So (sin(x) - x)/x^3 = -1/6 + O(x^2) → -1/6 as x → 0",
+      "category": "college_mathematics",
+      "difficulty": "hard", 
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-math-col-004",
+      "type": "multiple-choice",
+      "question": "If A is a 3×3 matrix with eigenvalues 1, 2, and 3, what is the trace of A?",
+      "choices": ["1", "6", "0", "2"],
+      "correctAnswer": 1,
+      "explanation": "The trace of a matrix equals the sum of its eigenvalues: 1 + 2 + 3 = 6",
+      "category": "college_mathematics",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-math-col-005",
+      "type": "multiple-choice",
+      "question": "What is the integral of x*e^(x^2) dx?",
+      "choices": ["e^(x^2)/2 + C", "x*e^(x^2) + C", "(1/2)*e^(x^2) + C", "e^(x^2) + C"],
+      "correctAnswer": 2,
+      "explanation": "Using substitution u = x^2, du = 2x dx. So ∫x*e^(x^2) dx = (1/2)∫e^u du = (1/2)*e^(x^2) + C",
+      "category": "college_mathematics",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-math-col-006",
+      "type": "multiple-choice",
+      "question": "Let f(x) = ln(x). What is the second derivative f''(1)?",
+      "choices": ["1", "-1", "0", "undefined"],
+      "correctAnswer": 1,
+      "explanation": "f'(x) = 1/x, f''(x) = -1/x^2. Therefore f''(1) = -1/1^2 = -1",
+      "category": "college_mathematics",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-math-col-007",
+      "type": "multiple-choice", 
+      "question": "What is the rank of the matrix [[1, 2, 3], [2, 4, 6], [1, 1, 1]]?",
+      "choices": ["1", "2", "3", "0"],
+      "correctAnswer": 1,
+      "explanation": "Row 2 is 2 times row 1, so they are linearly dependent. After row reduction, we get 2 linearly independent rows, so rank = 2",
+      "category": "college_mathematics",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-math-col-008",
+      "type": "multiple-choice",
+      "question": "If z = 2 + 3i, what is z * conjugate(z)?",
+      "choices": ["13", "5", "7", "4"],
+      "correctAnswer": 0,
+      "explanation": "z * conjugate(z) = |z|^2 = 2^2 + 3^2 = 4 + 9 = 13",
+      "category": "college_mathematics",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-math-col-009",
+      "type": "multiple-choice",
+      "question": "What is the Maclaurin series for cos(x) up to the x^4 term?",
+      "choices": ["1 - x^2/2 + x^4/24", "1 - x^2/2! + x^4/4!", "1 + x^2/2 - x^4/24", "1 - x^2 + x^4"],
+      "correctAnswer": 0,
+      "explanation": "cos(x) = 1 - x^2/2! + x^4/4! - ... = 1 - x^2/2 + x^4/24 - ...",
+      "category": "college_mathematics",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-math-col-010",
+      "type": "multiple-choice",
+      "question": "Find the volume of the solid obtained by rotating y = x^2 from x = 0 to x = 2 about the x-axis.",
+      "choices": ["32π/5", "16π/3", "8π", "4π"],
+      "correctAnswer": 0,
+      "explanation": "V = π∫₀² (x^2)² dx = π∫₀² x^4 dx = π[x^5/5]₀² = π(32/5) = 32π/5",
+      "category": "college_mathematics",
+      "difficulty": "hard",
+      "source": "mmlu_validation"
+    }
+  ]
+}

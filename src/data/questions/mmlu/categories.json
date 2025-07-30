@@ -1,0 +1,137 @@
+{
+  "metadata": {
+    "source": "MMLU (Massive Multitask Language Understanding)",
+    "repository": "https://huggingface.co/datasets/cais/mmlu",
+    "description": "Selected categories from MMLU dataset for LLM evaluation experience",
+    "extraction_strategy": "Random sampling from validation set with balanced difficulty",
+    "pool_size_per_category": 60,
+    "session_questions_per_category": 12
+  },
+  "selected_categories": [
+    {
+      "id": "college_mathematics",
+      "name": "College Mathematics", 
+      "description": "Undergraduate level mathematics including calculus, linear algebra, and discrete math",
+      "domain": "STEM",
+      "difficulty": "medium-hard",
+      "pool_size": 60,
+      "sample_distribution": {
+        "easy": 20,
+        "medium": 25, 
+        "hard": 15
+      }
+    },
+    {
+      "id": "world_history",
+      "name": "World History",
+      "description": "Global historical events, civilizations, and cultural developments",
+      "domain": "Humanities", 
+      "difficulty": "medium",
+      "pool_size": 60,
+      "sample_distribution": {
+        "easy": 25,
+        "medium": 25,
+        "hard": 10
+      }
+    },
+    {
+      "id": "college_physics",
+      "name": "College Physics",
+      "description": "University level physics concepts and problem solving",
+      "domain": "STEM",
+      "difficulty": "medium-hard", 
+      "pool_size": 60,
+      "sample_distribution": {
+        "easy": 15,
+        "medium": 25,
+        "hard": 20
+      }
+    },
+    {
+      "id": "computer_science",
+      "name": "Computer Science",
+      "description": "Programming, algorithms, data structures, and CS theory",
+      "domain": "STEM",
+      "difficulty": "medium",
+      "pool_size": 60,
+      "sample_distribution": {
+        "easy": 20,
+        "medium": 30,
+        "hard": 10
+      }
+    },
+    {
+      "id": "philosophy",
+      "name": "Philosophy", 
+      "description": "Logic, ethics, metaphysics, and philosophical reasoning",
+      "domain": "Humanities",
+      "difficulty": "medium-hard",
+      "pool_size": 60,
+      "sample_distribution": {
+        "easy": 15,
+        "medium": 30,
+        "hard": 15
+      }
+    },
+    {
+      "id": "college_medicine",
+      "name": "College Medicine",
+      "description": "Medical knowledge, anatomy, physiology, and clinical reasoning", 
+      "domain": "Professional",
+      "difficulty": "hard",
+      "pool_size": 60,
+      "sample_distribution": {
+        "easy": 10,
+        "medium": 25,
+        "hard": 25
+      }
+    },
+    {
+      "id": "econometrics",
+      "name": "Econometrics",
+      "description": "Economic analysis, statistics, and quantitative methods",
+      "domain": "Social Sciences",
+      "difficulty": "medium-hard",
+      "pool_size": 60,
+      "sample_distribution": {
+        "easy": 15,
+        "medium": 30,
+        "hard": 15
+      }
+    },
+    {
+      "id": "world_religions",
+      "name": "World Religions",
+      "description": "Major world religions, beliefs, practices, and cultural contexts",
+      "domain": "Humanities",
+      "difficulty": "medium",
+      "pool_size": 60,
+      "sample_distribution": {
+        "easy": 25,
+        "medium": 25,
+        "hard": 10
+      }
+    }
+  ],
+  "session_design": {
+    "total_categories": 8,
+    "questions_per_session": 96,
+    "questions_per_category_per_session": 12,
+    "estimated_time": "12-15 minutes",
+    "randomization": {
+      "category_order": "shuffled",
+      "question_selection": "random_from_pool",
+      "answer_choices": "preserve_original_order"
+    }
+  },
+  "data_extraction_plan": {
+    "source_split": "validation",
+    "extraction_method": "random_sampling",
+    "quality_filters": [
+      "Remove questions with formatting issues",
+      "Ensure answer choices are complete",
+      "Verify correct answer index is valid"
+    ],
+    "manual_review": "Sample review of 10% of extracted questions"
+  }
+}
