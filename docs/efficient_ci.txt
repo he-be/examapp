@@ -1,0 +1,283 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+    types: [ opened, synchronize, reopened ]
+
+jobs:
+  test:
+    name: Run Tests and Checks
+    runs-on: self-hosted
+    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Volta environment
+        run: |
+          export VOLTA_HOME="$HOME/.volta"
+          export PATH="$VOLTA_HOME/bin:$PATH"
+          echo "VOLTA_HOME=$VOLTA_HOME" >> $GITHUB_ENV
+          echo "$VOLTA_HOME/bin" >> $GITHUB_PATH
+          
+      - name: Verify Node.js installation
+        run: |
+          echo "Node.js version: $(node --version)"
+          echo "npm version: $(npm --version)"
+          echo "Expected: Node.js v22.17.0 (pre-installed via Volta)"
+          echo "Expected: Node.js v22.17.0 (pre-installed on self-hosted runner)"
+      
+      - name: Cache root node_modules
+        uses: corca-ai/local-cache@v2
+        with:
+          path: node_modules
+          key: root-deps-${{ hashFiles('package-lock.json') }}
+          base: /tmp/cache
+            
+      - name: Cache backend node_modules
+        uses: corca-ai/local-cache@v2
+        with:
+          path: backend/node_modules
+          key: backend-deps-${{ hashFiles('backend/package-lock.json') }}
+          base: /tmp/cache
+            
+      - name: Cache frontend node_modules
+        uses: corca-ai/local-cache@v2
+        with:
+          path: frontend/node_modules
+          key: frontend-deps-${{ hashFiles('frontend/package-lock.json') }}
+          base: /tmp/cache
+      
+      - name: Install root dependencies
+        run: |
+          export PATH="$HOME/.volta/bin:$PATH"
+          npm install --prefer-offline
+      
+      - name: Install backend dependencies
+        run: |
+          export PATH="$HOME/.volta/bin:$PATH"
+          cd backend && npm ci --prefer-offline
+      
+      - name: Install frontend dependencies
+        run: |
+          export PATH="$HOME/.volta/bin:$PATH"
+          cd frontend && npm ci --prefer-offline
+      
+      - name: Run lint
+        run: |
+          export PATH="$HOME/.volta/bin:$PATH"
+          npm run lint
+      
+      - name: Run typecheck
+        run: |
+          export PATH="$HOME/.volta/bin:$PATH"
+          npm run typecheck
+      
+      - name: Run tests
+        run: |
+          export PATH="$HOME/.volta/bin:$PATH"
+          npm test
+      
+      # Coverage Report disabled while tests are disabled due to vitest-pool-workers issue
+      # - name: Coverage Report
+      #   if: github.event_name == 'pull_request'
+      #   uses: davelosert/vitest-coverage-report-action@v2
+      
+      - name: Build for Cloudflare Workers
+        run: |
+          export PATH="$HOME/.volta/bin:$PATH"
+          npm run build
+
+      - name: All checks passed
+        if: success()
+        run: echo "✅ All tests, linting, type checking, and build completed successfully!"
+
+  deploy-staging:
+    name: Deploy to Staging (PR Preview)
+    runs-on: self-hosted
+    needs: test
+    if: github.event_name == 'pull_request'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Volta environment
+        run: |
+          export VOLTA_HOME="$HOME/.volta"
+          export PATH="$VOLTA_HOME/bin:$PATH"
+          echo "VOLTA_HOME=$VOLTA_HOME" >> $GITHUB_ENV
+          echo "$VOLTA_HOME/bin" >> $GITHUB_PATH
+          
+      - name: Verify Node.js installation
+        run: |
+          echo "Node.js version: $(node --version)"
+          echo "npm version: $(npm --version)"
+          echo "Expected: Node.js v22.17.0 (pre-installed via Volta)"
+      
+      - name: Cache root node_modules
+        uses: corca-ai/local-cache@v2
+        with:
+          path: node_modules
+          key: root-deps-${{ hashFiles('package-lock.json') }}
+          base: /tmp/cache
+            
+      - name: Cache backend node_modules
+        uses: corca-ai/local-cache@v2
+        with:
+          path: backend/node_modules
+          key: backend-deps-${{ hashFiles('backend/package-lock.json') }}
+          base: /tmp/cache
+            
+      - name: Cache frontend node_modules
+        uses: corca-ai/local-cache@v2
+        with:
+          path: frontend/node_modules
+          key: frontend-deps-${{ hashFiles('frontend/package-lock.json') }}
+          base: /tmp/cache
+      
+      - name: Install root dependencies
+        run: |
+          export PATH="$HOME/.volta/bin:$PATH"
+          npm install --prefer-offline
+      
+      - name: Install backend dependencies
+        run: |
+          export PATH="$HOME/.volta/bin:$PATH"
+          cd backend && npm ci --prefer-offline
+      
+      - name: Install frontend dependencies
+        run: |
+          export PATH="$HOME/.volta/bin:$PATH"
+          cd frontend && npm ci --prefer-offline
+      
+      - name: Build backend for Cloudflare Workers
+        run: |
+          export PATH="$HOME/.volta/bin:$PATH"
+          npm run build:backend
+      
+      - name: Build frontend for Cloudflare Workers
+        run: |
+          export PATH="$HOME/.volta/bin:$PATH"
+          npm run build:frontend
+      
+      - name: Deploy to staging (backend → frontend order required for Service Bindings)
+        run: |
+          export PATH="$HOME/.volta/bin:$PATH"
+          npm run deploy:staging
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          PR_NUMBER: ${{ github.event.number }}
+      
+      - name: Comment PR with staging URLs
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.payload.number;
+            const comment = `## 🚀 Staging Deployment Ready!
+            
+            Your PR has been deployed to staging environments:
+            
+            - **Backend**: https://unchartedterritory-pr-${prNumber}.masahiro-hibi.workers.dev
+            - **Frontend**: https://unchartedterritory-frontend-pr-${prNumber}.masahiro-hibi.workers.dev
+            
+            ### Test Your Changes:
+            - API Endpoint: \`/api/game/new\`
+            - Health Check: \`/api/health\`
+            - Debug Info: \`/debug\`
+            
+            🧪 **Testing Checklist:**
+            - [ ] Frontend loads correctly
+            - [ ] API calls work without 404 errors
+            - [ ] Game creation flow functions
+            - [ ] No console errors
+            `;
+            
+            github.rest.issues.createComment({
+              issue_number: prNumber,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+
+  deploy-production:
+    name: Deploy to Production
+    runs-on: self-hosted
+    needs: test
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Volta environment
+        run: |
+          export VOLTA_HOME="$HOME/.volta"
+          export PATH="$VOLTA_HOME/bin:$PATH"
+          echo "VOLTA_HOME=$VOLTA_HOME" >> $GITHUB_ENV
+          echo "$VOLTA_HOME/bin" >> $GITHUB_PATH
+          
+      - name: Verify Node.js installation
+        run: |
+          echo "Node.js version: $(node --version)"
+          echo "npm version: $(npm --version)"
+          echo "Expected: Node.js v22.17.0 (pre-installed via Volta)"
+      
+      - name: Cache root node_modules
+        uses: corca-ai/local-cache@v2
+        with:
+          path: node_modules
+          key: root-deps-${{ hashFiles('package-lock.json') }}
+          base: /tmp/cache
+            
+      - name: Cache backend node_modules
+        uses: corca-ai/local-cache@v2
+        with:
+          path: backend/node_modules
+          key: backend-deps-${{ hashFiles('backend/package-lock.json') }}
+          base: /tmp/cache
+            
+      - name: Cache frontend node_modules
+        uses: corca-ai/local-cache@v2
+        with:
+          path: frontend/node_modules
+          key: frontend-deps-${{ hashFiles('frontend/package-lock.json') }}
+          base: /tmp/cache
+      
+      - name: Install root dependencies
+        run: |
+          export PATH="$HOME/.volta/bin:$PATH"
+          npm install --prefer-offline
+      
+      - name: Install backend dependencies
+        run: |
+          export PATH="$HOME/.volta/bin:$PATH"
+          cd backend && npm ci --prefer-offline
+      
+      - name: Install frontend dependencies
+        run: |
+          export PATH="$HOME/.volta/bin:$PATH"
+          cd frontend && npm ci --prefer-offline
+      
+      - name: Build backend for Cloudflare Workers
+        run: |
+          export PATH="$HOME/.volta/bin:$PATH"
+          npm run build:backend
+      
+      - name: Build frontend for Cloudflare Workers
+        run: |
+          export PATH="$HOME/.volta/bin:$PATH"
+          npm run build:frontend
+      
+      - name: Deploy to production (backend → frontend order required for Service Bindings)
+        run: |
+          export PATH="$HOME/.volta/bin:$PATH"
+          npm run deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

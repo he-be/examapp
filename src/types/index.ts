@@ -62,6 +62,8 @@ export interface HellaSwagQuestion extends BaseQuestion {
  * 多様なタスク形式に対応
  */
 export interface BigBenchQuestion extends BaseQuestion {
+  type: 'multiple-choice';
+  choices: string[];
   taskType: string;
   difficulty: 'hard';
   reasoningType: 'logical' | 'mathematical' | 'commonsense' | 'linguistic';
@@ -72,8 +74,10 @@ export interface BigBenchQuestion extends BaseQuestion {
  * 長文読解に基づく質問応答
  */
 export interface DROPQuestion extends BaseQuestion {
+  type: 'text';
   passage: string;
   questionType: 'numeric' | 'span' | 'date';
+  possibleAnswers?: string[];
 }
 
 /**
