@@ -90,7 +90,7 @@ jobs:
       # 11. Playwrightブラウザのインストール（キャッシュがない場合のみ）
       - name: Install Playwright browsers
         if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: npx playwright install chromium --with-deps
+        run: npx playwright install chromium
 
       # 12. プロジェクトのビルド
       - name: Build project
