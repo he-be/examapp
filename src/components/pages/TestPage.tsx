@@ -76,6 +76,12 @@ const MMLUTestPage: React.FC = () => {
     if (selectedCategories.length === 0) return;
 
     try {
+      // Verify question data is loaded before starting
+      if (categorySummary.length === 0) {
+        setError('Question data is still loading. Please wait a moment and try again.');
+        return;
+      }
+
       // For now, start with single category
       const session = getRandomQuestionsForSession(selectedCategories[0], 12);
       setCurrentSession(session);
@@ -85,7 +91,21 @@ const MMLUTestPage: React.FC = () => {
       setTestStarted(true);
     } catch (error) {
       console.error('Failed to start MMLU test:', error);
-      setError('Failed to start test. Please try again.');
+      if (error instanceof Error) {
+        if (error.message.includes('Category not found')) {
+          setError(
+            `The selected category "${selectedCategories[0]}" is not available yet. Please select a different category.`
+          );
+        } else if (error.message.includes('Insufficient questions')) {
+          setError(
+            'Not enough questions available for this category. Please select a different category.'
+          );
+        } else {
+          setError('Failed to start test. Please try again or select a different category.');
+        }
+      } else {
+        setError('Failed to start test. Please try again.');
+      }
     }
   };
 
