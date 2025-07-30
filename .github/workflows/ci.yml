@@ -57,7 +57,7 @@ jobs:
         uses: corca-ai/local-cache@v2
         id: playwright-cache
         with:
-          path: ~/.cache/ms-playwright
+          path: ${{ runner.temp }}/ms-playwright
           key: playwright-${{ hashFiles('**/package-lock.json') }}
           base: /tmp/cache
 
@@ -90,17 +90,18 @@ jobs:
       # 11. Playwrightブラウザのインストール（キャッシュがない場合のみ）
       - name: Install Playwright browsers
         if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: npx playwright install chromium
+        run: PLAYWRIGHT_BROWSERS_PATH=${{ runner.temp }}/ms-playwright npx playwright install chromium
 
       # 12. プロジェクトのビルド
       - name: Build project
         run: npm run build
 
-      # 13. E2Eテストを実行する
+            # 13. E2Eテストを実行する
       - name: Run E2E tests
         run: npx playwright test
         env:
           CI: true
+          PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/ms-playwright
 
       # 14. Cloudflare Workers へのデプロイ（mainブランチのみ）
       - name: Deploy to Cloudflare Workers
