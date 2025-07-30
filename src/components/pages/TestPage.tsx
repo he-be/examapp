@@ -82,8 +82,21 @@ const MMLUTestPage: React.FC = () => {
         return;
       }
 
-      // For now, start with single category
-      const session = getRandomQuestionsForSession(selectedCategories[0], 12);
+      // For now, start with single category - use available question count
+      const selectedCategoryId = selectedCategories[0];
+      const categoryInfo = categorySummary.find((cat) => cat.id === selectedCategoryId);
+      const availableQuestions = categoryInfo?.questionCount || 0;
+
+      if (availableQuestions === 0) {
+        setError(
+          `No questions available for category "${categoryInfo?.name || selectedCategoryId}". Please select a different category.`
+        );
+        return;
+      }
+
+      const questionsToUse = Math.min(8, availableQuestions); // Use up to 8 questions, but no more than available
+
+      const session = getRandomQuestionsForSession(selectedCategoryId, questionsToUse);
       setCurrentSession(session);
       setCurrentQuestionIndex(0);
       setUserAnswers({});
