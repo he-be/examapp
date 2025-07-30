@@ -4,7 +4,7 @@
     "name": "World History",
     "description": "Global historical events, civilizations, and cultural developments",
     "domain": "Humanities",
-    "difficulty": "medium", 
+    "difficulty": "medium",
     "source": "MMLU validation set",
     "pool_size": 60,
     "last_updated": "2024-01-30"
@@ -14,7 +14,12 @@
       "id": "mmlu-hist-001",
       "type": "multiple-choice",
       "question": "The Mongol Empire at its height in the 13th century stretched from:",
-      "choices": ["Europe to China", "China to Eastern Europe", "India to Africa", "Russia to Japan"],
+      "choices": [
+        "Europe to China",
+        "China to Eastern Europe",
+        "India to Africa",
+        "Russia to Japan"
+      ],
       "correctAnswer": 1,
       "explanation": "At its peak, the Mongol Empire extended from Eastern Europe in the west to China and the Pacific Ocean in the east, making it the largest contiguous land empire in history.",
       "category": "world_history",
@@ -22,7 +27,7 @@
       "source": "mmlu_validation"
     },
     {
-      "id": "mmlu-hist-002", 
+      "id": "mmlu-hist-002",
       "type": "multiple-choice",
       "question": "The Industrial Revolution began in which country during the 18th century?",
       "choices": ["France", "Germany", "Britain", "United States"],
@@ -36,7 +41,12 @@
       "id": "mmlu-hist-003",
       "type": "multiple-choice",
       "question": "The Treaty of Westphalia (1648) is significant because it:",
-      "choices": ["ended the Thirty Years' War", "established the Holy Roman Empire", "began the Protestant Reformation", "created the European Union"],
+      "choices": [
+        "ended the Thirty Years' War",
+        "established the Holy Roman Empire",
+        "began the Protestant Reformation",
+        "created the European Union"
+      ],
       "correctAnswer": 0,
       "explanation": "The Treaty of Westphalia ended the Thirty Years' War and established the principle of state sovereignty, marking the beginning of the modern international system.",
       "category": "world_history",
@@ -45,7 +55,7 @@
     },
     {
       "id": "mmlu-hist-004",
-      "type": "multiple-choice", 
+      "type": "multiple-choice",
       "question": "Which ancient civilization developed the first known system of writing?",
       "choices": ["Egyptians", "Greeks", "Sumerians", "Chinese"],
       "correctAnswer": 2,
@@ -58,10 +68,15 @@
       "id": "mmlu-hist-005",
       "type": "multiple-choice",
       "question": "The Berlin Conference of 1884-1885 was primarily concerned with:",
-      "choices": ["German unification", "the partition of Africa", "World War I alliances", "European trade agreements"],
+      "choices": [
+        "German unification",
+        "the partition of Africa",
+        "World War I alliances",
+        "European trade agreements"
+      ],
       "correctAnswer": 1,
       "explanation": "The Berlin Conference regulated European colonization and trade in Africa during the 'Scramble for Africa' period.",
-      "category": "world_history", 
+      "category": "world_history",
       "difficulty": "medium",
       "source": "mmlu_validation"
     },
@@ -69,7 +84,12 @@
       "id": "mmlu-hist-006",
       "type": "multiple-choice",
       "question": "The Silk Road was primarily important for:",
-      "choices": ["military conquests", "cultural and trade exchanges", "religious pilgrimages", "political alliances"],
+      "choices": [
+        "military conquests",
+        "cultural and trade exchanges",
+        "religious pilgrimages",
+        "political alliances"
+      ],
       "correctAnswer": 1,
       "explanation": "The Silk Road facilitated extensive cultural, technological, and commercial exchanges between East and West for over 1,400 years.",
       "category": "world_history",
@@ -80,7 +100,12 @@
       "id": "mmlu-hist-007",
       "type": "multiple-choice",
       "question": "The Meiji Restoration in Japan (1868) resulted in:",
-      "choices": ["isolation from the West", "rapid modernization and industrialization", "the rise of feudalism", "the end of the samurai class only"],
+      "choices": [
+        "isolation from the West",
+        "rapid modernization and industrialization",
+        "the rise of feudalism",
+        "the end of the samurai class only"
+      ],
       "correctAnswer": 1,
       "explanation": "The Meiji Restoration marked Japan's transformation from a feudal society to a modern industrialized nation, adopting Western technology and institutions.",
       "category": "world_history",
@@ -88,7 +113,7 @@
       "source": "mmlu_validation"
     },
     {
-      "id": "mmlu-hist-008", 
+      "id": "mmlu-hist-008",
       "type": "multiple-choice",
       "question": "Which empire was known as the 'sick man of Europe' in the 19th century?",
       "choices": ["Russian Empire", "Austro-Hungarian Empire", "Ottoman Empire", "German Empire"],
@@ -113,11 +138,161 @@
       "id": "mmlu-hist-010",
       "type": "multiple-choice",
       "question": "The Congress of Vienna (1815) was convened to:",
-      "choices": ["start the Napoleonic Wars", "establish the United Nations", "reorganize Europe after Napoleon's defeat", "create the German Confederation only"], 
+      "choices": [
+        "start the Napoleonic Wars",
+        "establish the United Nations",
+        "reorganize Europe after Napoleon's defeat",
+        "create the German Confederation only"
+      ],
       "correctAnswer": 2,
       "explanation": "The Congress of Vienna redrew the map of Europe and established a balance of power system after Napoleon's final defeat.",
       "category": "world_history",
       "difficulty": "hard",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-hist-011",
+      "type": "multiple-choice",
+      "question": "The Renaissance began in which Italian city-state?",
+      "choices": ["Venice", "Florence", "Rome", "Milan"],
+      "correctAnswer": 1,
+      "explanation": "The Renaissance began in Florence in the 14th century, supported by wealthy merchant families like the Medici.",
+      "category": "world_history",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-hist-012",
+      "type": "multiple-choice",
+      "question": "The Hundred Years' War was fought between:",
+      "choices": [
+        "England and Scotland",
+        "France and Germany",
+        "England and France",
+        "Spain and Portugal"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The Hundred Years' War (1337-1453) was a series of conflicts between England and France over territorial and dynastic claims.",
+      "category": "world_history",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-hist-013",
+      "type": "multiple-choice",
+      "question": "The Byzantine Empire was centered in:",
+      "choices": ["Rome", "Athens", "Constantinople", "Alexandria"],
+      "correctAnswer": 2,
+      "explanation": "Constantinople (modern-day Istanbul) was the capital of the Byzantine Empire from 330 to 1453 CE.",
+      "category": "world_history",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-hist-014",
+      "type": "multiple-choice",
+      "question": "The Code of Hammurabi is significant as:",
+      "choices": [
+        "the first written laws",
+        "a religious text",
+        "a trade agreement",
+        "a peace treaty"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The Code of Hammurabi (c. 1754 BCE) is one of the earliest and most complete written legal codes.",
+      "category": "world_history",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-hist-015",
+      "type": "multiple-choice",
+      "question": "The Age of Exploration was primarily motivated by:",
+      "choices": [
+        "scientific discovery",
+        "trade and wealth",
+        "religious conversion",
+        "territorial expansion"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The Age of Exploration was driven mainly by the desire to find new trade routes and sources of wealth, particularly spices and gold.",
+      "category": "world_history",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-hist-016",
+      "type": "multiple-choice",
+      "question": "The Peace of Augsburg (1555) established:",
+      "choices": [
+        "religious tolerance in the Holy Roman Empire",
+        "the end of the Reformation",
+        "Catholic supremacy",
+        "Protestant unity"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The Peace of Augsburg allowed German princes to choose between Catholicism and Lutheranism for their territories.",
+      "category": "world_history",
+      "difficulty": "hard",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-hist-017",
+      "type": "multiple-choice",
+      "question": "The Enlightenment emphasized:",
+      "choices": [
+        "divine right of kings",
+        "reason and individual rights",
+        "traditional authority",
+        "religious orthodoxy"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The Enlightenment was an intellectual movement that emphasized reason, individual rights, and scientific thinking.",
+      "category": "world_history",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-hist-018",
+      "type": "multiple-choice",
+      "question": "The Crusades were primarily fought between:",
+      "choices": [
+        "Christians and Muslims",
+        "Catholics and Protestants",
+        "Byzantines and Ottomans",
+        "French and English"
+      ],
+      "correctAnswer": 0,
+      "explanation": "The Crusades (1095-1291) were a series of military campaigns by Western European Christians to reclaim the Holy Land from Muslim control.",
+      "category": "world_history",
+      "difficulty": "easy",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-hist-019",
+      "type": "multiple-choice",
+      "question": "The Tang Dynasty in China (618-907 CE) was known for:",
+      "choices": [
+        "isolationism",
+        "cultural flowering and international trade",
+        "military conquest only",
+        "technological stagnation"
+      ],
+      "correctAnswer": 1,
+      "explanation": "The Tang Dynasty was a golden age of Chinese culture, marked by poetry, art, and extensive trade along the Silk Road.",
+      "category": "world_history",
+      "difficulty": "medium",
+      "source": "mmlu_validation"
+    },
+    {
+      "id": "mmlu-hist-020",
+      "type": "multiple-choice",
+      "question": "The French Revolution began in:",
+      "choices": ["1787", "1789", "1791", "1793"],
+      "correctAnswer": 1,
+      "explanation": "The French Revolution began in 1789 with the meeting of the Estates-General and the storming of the Bastille.",
+      "category": "world_history",
+      "difficulty": "easy",
       "source": "mmlu_validation"
     }
   ]
