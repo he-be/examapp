@@ -98,7 +98,7 @@ jobs:
 
       # 13. E2Eテストを実行する
       - name: Run E2E tests
-        run: playwright test
+        run: npx playwright test
         env:
           CI: true
 
