@@ -74,18 +74,13 @@ jobs:
           npm run format:check &
           wait
 
-      # 8. 単体テストを実行する（カバレッジなしで高速化）
-      - name: Run unit tests
-        run: npm run test:unit
-
-      # 9. カバレッジ付きテスト（mainブランチのみ）
+      # 8. 単体テストとカバレッジを実行する
       - name: Run tests with coverage
-        if: github.ref == 'refs/heads/main'
         run: npm run test:coverage
 
-      # 10. カバレッジレポートをPRにコメントする（mainブランチのみ）
+      # 10. カバレッジレポートをPRにコメントする（プルリクエストのみ）
       - name: Coverage Report
-        if: github.event_name == 'pull_request' && github.ref == 'refs/heads/main'
+        if: github.event_name == 'pull_request'
         uses: davelosert/vitest-coverage-report-action@v2
 
       # 11. Playwrightブラウザのインストール

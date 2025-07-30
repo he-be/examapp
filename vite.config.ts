@@ -12,9 +12,13 @@ export default defineConfig(
       setupFiles: ['./src/test/setup.ts'],
       include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
       exclude: ['e2e/**', 'node_modules/**', 'dist/**'],
+      testTimeout: 30000, // 30 seconds timeout for individual tests
+      hookTimeout: 30000, // 30 seconds timeout for hooks
       coverage: {
         provider: 'v8',
-        reporter: ['text', 'json', 'json-summary', 'html'],
+        reporter: process.env.CI
+          ? ['text', 'json-summary']
+          : ['text', 'json', 'json-summary', 'html'],
         reportsDirectory: './coverage',
         exclude: ['node_modules/', 'dist/', 'e2e/', '**/*.d.ts', '**/*.config.*', 'coverage/**'],
       },
