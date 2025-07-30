@@ -21,9 +21,6 @@ export default defineConfig(
           : ['text', 'json', 'json-summary', 'html'],
         reportsDirectory: './coverage',
         exclude: ['node_modules/', 'dist/', 'e2e/', '**/*.d.ts', '**/*.config.*', 'coverage/**'],
-        thresholds: {
-          autoUpdate: true,
-        },
       },
     },
     build: {
