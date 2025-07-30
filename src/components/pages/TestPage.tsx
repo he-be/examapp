@@ -47,6 +47,7 @@ const MMLUTestPage: React.FC = () => {
   const [showFeedback, setShowFeedback] = useState(false);
   const [practiceMode, setPracticeMode] = useState(true);
   const [testStarted, setTestStarted] = useState(false);
+  const [testCompleted, setTestCompleted] = useState(false);
 
   // Load available categories
   const [categorySummary, setCategorySummary] = useState<CategorySummary[]>([]);
@@ -123,13 +124,19 @@ const MMLUTestPage: React.FC = () => {
   };
 
   const handleAnswerSelect = (questionId: string, answerIndex: number) => {
-    setUserAnswers((prev) => ({
-      ...prev,
+    const newAnswers = {
+      ...userAnswers,
       [questionId]: answerIndex,
-    }));
+    };
+    setUserAnswers(newAnswers);
 
     if (practiceMode) {
       setShowFeedback(true);
+    }
+
+    // Check if test is completed (all questions answered)
+    if (currentSession && Object.keys(newAnswers).length === currentSession.questions.length) {
+      setTestCompleted(true);
     }
   };
 
@@ -153,6 +160,24 @@ const MMLUTestPage: React.FC = () => {
     setCurrentQuestionIndex(0);
     setUserAnswers({});
     setShowFeedback(false);
+    setTestCompleted(false);
+  };
+
+  const calculateResults = () => {
+    if (!currentSession) return { correct: 0, total: 0, percentage: 0 };
+
+    let correct = 0;
+    currentSession.questions.forEach((question) => {
+      const userAnswer = userAnswers[question.id];
+      if (userAnswer === question.correctAnswer) {
+        correct++;
+      }
+    });
+
+    const total = currentSession.questions.length;
+    const percentage = Math.round((correct / total) * 100);
+
+    return { correct, total, percentage };
   };
 
   if (loading) {
@@ -278,6 +303,125 @@ const MMLUTestPage: React.FC = () => {
               Start Test ({selectedCategories.length} category
               {selectedCategories.length !== 1 ? 's' : ''} selected)
             </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Show completion screen when test is completed
+  if (testCompleted && currentSession) {
+    const results = calculateResults();
+
+    return (
+      <div className="container">
+        <div className="mmlu-test-completion">
+          <div className="card" style={{ textAlign: 'center', marginBottom: 'var(--spacing-lg)' }}>
+            <h1
+              style={{
+                fontSize: '2.5rem',
+                marginBottom: 'var(--spacing-lg)',
+                color:
+                  results.percentage >= 70
+                    ? 'var(--color-success)'
+                    : results.percentage >= 50
+                      ? 'var(--color-warning, #f59e0b)'
+                      : 'var(--color-error)',
+              }}
+            >
+              🎉 Test Completed!
+            </h1>
+
+            <div
+              style={{
+                fontSize: '1.5rem',
+                marginBottom: 'var(--spacing-xl)',
+                color: 'var(--color-text-primary)',
+              }}
+            >
+              <strong>{currentSession.categoryName}</strong>
+            </div>
+
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
+                gap: 'var(--spacing-lg)',
+                marginBottom: 'var(--spacing-xl)',
+              }}
+            >
+              <div className="result-stat">
+                <div
+                  style={{ fontSize: '2rem', fontWeight: 'bold', color: 'var(--color-primary)' }}
+                >
+                  {results.correct}/{results.total}
+                </div>
+                <div style={{ color: 'var(--color-text-secondary)' }}>Correct</div>
+              </div>
+
+              <div className="result-stat">
+                <div
+                  style={{
+                    fontSize: '2rem',
+                    fontWeight: 'bold',
+                    color:
+                      results.percentage >= 70
+                        ? 'var(--color-success)'
+                        : results.percentage >= 50
+                          ? 'var(--color-warning, #f59e0b)'
+                          : 'var(--color-error)',
+                  }}
+                >
+                  {results.percentage}%
+                </div>
+                <div style={{ color: 'var(--color-text-secondary)' }}>Accuracy</div>
+              </div>
+            </div>
+
+            <div
+              style={{
+                padding: 'var(--spacing-md)',
+                backgroundColor:
+                  results.percentage >= 70
+                    ? 'var(--color-success-light, #e8f5e8)'
+                    : results.percentage >= 50
+                      ? 'var(--color-warning-light, #fef3c7)'
+                      : 'var(--color-error-light, #fce8e8)',
+                borderRadius: 'var(--border-radius)',
+                marginBottom: 'var(--spacing-xl)',
+              }}
+            >
+              <p style={{ margin: 0, fontWeight: 'bold' }}>
+                {results.percentage >= 70
+                  ? 'Excellent work! 🌟'
+                  : results.percentage >= 50
+                    ? 'Good effort! 👍'
+                    : 'Keep practicing! 💪'}
+              </p>
+              <p style={{ margin: 0 }}>
+                {results.percentage >= 70
+                  ? 'You have a strong understanding of this topic.'
+                  : results.percentage >= 50
+                    ? "You're on the right track, but there's room for improvement."
+                    : 'Consider reviewing the material and trying again.'}
+              </p>
+            </div>
+
+            <div
+              style={{
+                display: 'flex',
+                gap: 'var(--spacing-md)',
+                justifyContent: 'center',
+                flexWrap: 'wrap',
+              }}
+            >
+              <button onClick={resetTest} className="btn btn-primary">
+                Take Another Test
+              </button>
+              <Link to="/" className="btn btn-secondary">
+                Back to Home
+              </Link>
+            </div>
           </div>
         </div>
       </div>
